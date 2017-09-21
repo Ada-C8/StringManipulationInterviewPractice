@@ -1,22 +1,90 @@
+require 'pry'
 # A method to reverse a string in place.
 def string_reverse(my_string)
-  puts "NOT IMPLEMENTED"
+  if my_string.length == 1 || my_string.length == 0
+    return my_string
+  end
+  i = 0
+  i2 = my_string.length-1
+  my_string = my_string.split('')
+  while i < i2
+    my_string[i] = (my_string[i].ord + my_string[i2].ord)
+    my_string[i2] = my_string[i] - my_string[i2].ord
+    my_string[i] = (my_string[i] - my_string[i2]).chr
+    my_string[i2] = my_string[i2].chr
+    i += 1
+    i2 -= 1
+  end
+  return my_string.join
 end
 
 # A method to reverse each word in a sentence, in place.
 def reverse_words(my_words)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  i2 = 0
+  my_words = my_words.split('')
+  while i < my_words.length
+    until my_words[i2+1] == ' ' || i2 == my_words.length
+      i2 += 1
+    end
+    my_words[i..i2] = string_reverse(my_words[i..i2].join).split('')
+    i2 += 1
+    while my_words[i2] == ' '
+      i2 += 1
+    end
+    i = i2
+  end
+  return my_words.join
 end
 
 # A method to reverse the words in a sentence, in place.
 def reverse_sentence(my_sentence)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  i2 = 0
+  word = []
+  my_sentence = my_sentence.split('')
+  while i < my_sentence.length
+    until my_sentence[i2+1] == ' ' || i2 == my_sentence.length
+      i2 += 1
+    end
+    word = my_sentence[i..i2]
+    word.length.times {my_sentence.delete_at(i)}
+    my_sentence = word + my_sentence
+    i2 += 1
+    i = i2
+    if i2 >= my_sentence.length
+      return my_sentence.join
+    end
+    until my_sentence[i2+1] != ' ' || i2 == my_sentence.length
+      i2 += 1
+    end
+    word = my_sentence[i..i2]
+    word.length.times {my_sentence.delete_at(i)}
+    my_sentence = word + my_sentence
+    i2 += 1
+    i = i2
+  end
 end
 
 # A method to check if the input string is a palindrome.
 # Return true if the string is a palindrome. Return false otherwise.
 def palindrome_check(my_phrase)
-  puts "NOT IMPLEMENTED"
+  my_phrase = my_phrase.split('')
+  i = 0
+  i2 = my_phrase.length - 1
+  while i < i2
+    if my_phrase[i] == ' '
+      i += 1
+    end
+    if my_phrase[i2] == ' '
+      i2 -= 1
+    end
+    unless my_phrase[i] == my_phrase[i2]
+      return false
+    end
+    i += 1
+    i2 -= 1
+  end
   return true
 end
 
@@ -32,7 +100,7 @@ puts "Test 1: reverse a string"
 my_string = "Lovelace"
 puts "Original string: #{my_string}"
 reversed_string = "ecalevoL"
-string_reverse(my_string)
+my_string = string_reverse(my_string)
 if my_string == reversed_string
   puts "String reversed correctly. Reversed string: #{reversed_string}"
 else
@@ -43,7 +111,7 @@ puts "Test 2: reversed words"
 my_words = "I can be an  engineer"
 puts "Original: #{my_words}"
 reversed_words = "I nac eb na  reenigne"
-reverse_words(my_words)
+my_words = reverse_words(my_words)
 if my_words == reversed_words
   puts "Words reversed correctly. Reversed words: #{reversed_words}"
 else
@@ -54,7 +122,7 @@ puts "Test 3: reversed sentence"
 sentence = "Yoda  is   awesome"
 puts "Original: #{sentence}"
 reversed_sentence = "awesome   is  Yoda"
-reverse_sentence(sentence)
+sentence = reverse_sentence(sentence)
 if sentence == reversed_sentence
   puts "Sentence reversed correctly. Reversed sentence: '#{reversed_sentence}'"
 else
@@ -67,8 +135,8 @@ puts "BUG: madam is a palindrome and should return true" if palindrome_check(phr
 phrase = "empty"
 puts "BUG: empty is not a palindrome and should return false" if palindrome_check(phrase) != false
 # optional challenge
-# phrase = "nurses run"
-# puts "BUG: 'nurses run' is a palindrome and should return true" if palindrome_check(phrase) != true
+phrase = "nurses run"
+puts "BUG: 'nurses run' is a palindrome and should return true" if palindrome_check(phrase) != true
 puts "Palindrome test complete."
 
 # Optional Question #5
