@@ -69,7 +69,7 @@ end
 # A method to check if the input string is a palindrome.
 # Return true if the string is a palindrome. Return false otherwise.
 def palindrome_check(my_phrase)
-  my_phrase = my_phrase.split('')
+  my_phrase = my_phrase.split('') # converting into a literal array of characters to allow for modification
   i = 0
   i2 = my_phrase.length - 1
   while i < i2
@@ -92,7 +92,12 @@ end
 # with a number representing the frequncy. The replacement is done only if the
 # string length will get reduced by the process.
 def encode_repeating(my_string)
-  puts "NOT IMPLEMENTED"
+  my_string = my_string.split('') # converting into a literal array of characters to allow for modification
+  i = 0
+  i2 = 0
+  count = 0
+  while i2 < my_string.length
+  end
 end
 
 ### ---- END OF METHODS
