@@ -6,7 +6,7 @@ def string_reverse(my_string)
   end
   i = 0
   i2 = my_string.length-1
-  my_string = my_string.split('')
+  my_string = my_string.split('') # converting into a literal array of characters to allow for modification
   while i < i2
     my_string[i] = (my_string[i].ord + my_string[i2].ord)
     my_string[i2] = my_string[i] - my_string[i2].ord
@@ -22,7 +22,7 @@ end
 def reverse_words(my_words)
   i = 0
   i2 = 0
-  my_words = my_words.split('')
+  my_words = my_words.split('') # converting into a literal array of characters to allow for modification
   while i < my_words.length
     until my_words[i2+1] == ' ' || i2 == my_words.length
       i2 += 1
@@ -42,7 +42,7 @@ def reverse_sentence(my_sentence)
   i = 0
   i2 = 0
   word = []
-  my_sentence = my_sentence.split('')
+  my_sentence = my_sentence.split('') # converting into a literal array of characters to allow for modification
   while i < my_sentence.length
     until my_sentence[i2+1] == ' ' || i2 == my_sentence.length
       i2 += 1
