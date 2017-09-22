@@ -1,9 +1,20 @@
 # A method to reverse a string in place.
 def string_reverse(my_string)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  j = my_string.length - 1
+  reversed_string = my_string
+  while i < (my_string.length  / 2)
+    temp = reversed_string[i]
+    reversed_string[i] = reversed_string[j]
+    reversed_string[j] = temp
+    i += 1
+    j -= 1
+  end
+  return reversed_string
 end
 
-# A method to reverse each word in a sentence, in place.
+
+# aA method to reverse each word in a sentence, in place.
 def reverse_words(my_words)
   puts "NOT IMPLEMENTED"
 end
