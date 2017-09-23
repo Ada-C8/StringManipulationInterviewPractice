@@ -18,9 +18,9 @@ def reverse_words(my_words)
   i = 0
   while j < my_words.length - 1
     #find the beginning of the word
-    i += 1 until my_words[i] != " "
+    i += 1 while my_words[i] == " "
     #find the end of the word
-    j += 1 until (my_words[j + 1] == " " && my_words[j] != " ") || (j == my_words.length - 1)
+    j += 1 while (my_words[j + 1] != " " && my_words[j] == " ") && (j != my_words.length - 1)
     #set counters for reverse
     k = i
     l = j
@@ -40,20 +40,32 @@ end
 
 # A method to reverse the words in a sentence, in place.
 def reverse_sentence(my_sentence)
-  puts "NOT IMPLEMENTED"
-  return true
-  # #find first word
-  # bw_last_char = 0
-  # bw_first_char = 0
-  # while bw_last_char < my_sentence.length - 1
-  #   #find the beginning of the word
-  #   bw_first_char += 1 until my_sentence[bw_first_char] != " "
-  #   #find the end of the word
-  #   bw_last_char += 1 until (my_sentence[bw_last_char + 1] == " " && my_sentence[bw_last_char] != " ") || (bw_last_char == my_sentence.length - 1)
-  #   bw_first_char = bw_last_char + 1
-  #   bw_last_char = bw_first_char
-  # end
-
+  # hold index of first character of original my_sentence
+  i = 0
+  # hold index of last character of first group of chars (whitespace or word)
+  j = 0
+  if my_sentence[1] == " "
+    j += 1 while my_sentence[j + 1] == " "
+  else
+    j += 1 while my_sentence[j + 1] != " "
+  end
+  # hold max_index
+  max_index = my_sentence.length - 1
+  while j < max_index
+    # find first group of chars (whitespace or word) starting from the end of my_sentence
+    first_char = max_index
+    if my_sentence[max_index] == " "
+      first_char -= 1 while my_sentence[first_char - 1] == " "
+    else
+      first_char -= 1 while my_sentence[first_char - 1] != " "
+    end
+    chars = my_sentence[first_char..max_index]
+    # put this group of chars before the index of the first char of the original my_sentence
+    my_sentence[first_char..max_index] = ""
+    my_sentence[i] = chars + my_sentence[i]
+    i += max_index - first_char + 1
+    j += max_index - first_char + 1
+  end
 end
 
 # A method to check if the input string is a palindrome.
@@ -75,7 +87,21 @@ end
 # with a number representing the frequncy. The replacement is done only if the
 # string length will get reduced by the process.
 def encode_repeating(my_string)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  j = 0
+  letter = my_string[i]
+  while i < my_string.length
+    j += 1 while my_string[j + 1] == letter
+    if j - i >= 2
+      my_string[(i + 1)..j] = (j - i + 1).to_s
+    end
+    additional = 0
+    additional = 1 if j > i
+    i += 1 + additional
+    j = i
+    letter = my_string[i]
+  end
+  return my_string
 end
 
 ### ---- END OF METHODS
@@ -123,22 +149,22 @@ puts "BUG: 'nurses run' is a palindrome and should return true" if palindrome_ch
 puts "Palindrome test complete."
 
 # Optional Question #5
-# puts "Test 5: Encode test"
-# test1 = "aaabbbbbcccc"
-# encode_repeating(test1)
-# if test1 != "a3b5c4"
-#   puts "BUG! 'aaabbbbbcccc' should get encoded to 'a3b5c4', not '#{test1}'"
-# end
-#
-# test2 = "xxxyttttgeee"
-# encode_repeating(test2)
-# if test2 != "x3yt4ge3"
-#   puts "BUG! 'xxxyttttgeee' should get encoded to 'x3yt4ge3', not '#{test2}'"
-# end
-#
-# test3 = "ddbbfffgjjjj"
-# encode_repeating(test3)
-# if test3 != "ddbbf3gj4"
-#   puts "BUG! 'ddbbfffgjjjj' should get encoded to 'ddbbf3gj4', not '#{test3}'"
-# end
-# puts "Encode test complete."
+puts "Test 5: Encode test"
+test1 = "aaabbbbbcccc"
+encode_repeating(test1)
+if test1 != "a3b5c4"
+  puts "BUG! 'aaabbbbbcccc' should get encoded to 'a3b5c4', not '#{test1}'"
+end
+
+test2 = "xxxyttttgeee"
+encode_repeating(test2)
+if test2 != "x3yt4ge3"
+  puts "BUG! 'xxxyttttgeee' should get encoded to 'x3yt4ge3', not '#{test2}'"
+end
+
+test3 = "ddbbfffgjjjj"
+encode_repeating(test3)
+if test3 != "ddbbf3gj4"
+  puts "BUG! 'ddbbfffgjjjj' should get encoded to 'ddbbf3gj4', not '#{test3}'"
+end
+puts "Encode test complete."
