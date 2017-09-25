@@ -6,13 +6,13 @@ What is the time and space complexity for each method you implemented? Provide j
 
 |  Question 	|  Answer 	|
 |---	|---	|
-|  What is the time complexity of the string_reverse method? Provide justification.	|   	|
-|  What is the space complexity of the string_reverse method? Provide justification.	|   	|
-|  What is the time complexity of the reverse_words method? Provide justification.	|   	|
-|  What is the space complexity of the reverse_words method? Provide justification.	|   	|
-|  What is the time complexity of the reverse_sentence method? Provide justification.	|   	|
-|  What is the space complexity of the reverse_sentence method? Provide justification.	|   	|
-|  What is the time complexity of the palindrome_check method? Provide justification.	|   	|
-|  What is the space complexity of the palindrome_check method? Provide justification.	|   	|
-|  What is the time complexity of the encode_repeating method? Provide justification.	|   	|
-|  What is the space complexity of the encode_repeating method? Provide justification.	|   	|
+|  What is the time complexity of the string_reverse method? Provide justification.	| O(n) because even though you go through about n/2 iterations, for asymptotic big O notation we can drop the 1/2 constant and get n. Therefore as the size of the string grows, the run time also increases linearly with n.  	|
+|  What is the space complexity of the string_reverse method? Provide justification.	| O(1) because you create three variables (i, j, and temp) regardless of the size of the string.  	|
+|  What is the time complexity of the reverse_words method? Provide justification.	| O(1) because you go through the entire string to find spaces (O(n)) and then you reverse each word (O(n)). Since n+n = 2n and constants are dropped, we end up with a time complexity of O(n).  	|
+|  What is the space complexity of the reverse_words method? Provide justification.	|  O(1) because you create four variables (index, i, j, and temp) regardless of the size of the string. 	|
+|  What is the time complexity of the reverse_sentence method? Provide justification.	|  O(n) because the reverse_sentence method uses two methods consecutively, each with an O(n) time complexity.  	|
+|  What is the space complexity of the reverse_sentence method? Provide justification.	| O(1) because you create a constant set of variables regardless of how big the string is.  	|
+|  What is the time complexity of the palindrome_check method? Provide justification.	| O(n) because you iterate through each element in the string to see whether the string is a palindrome.  	|
+|  What is the space complexity of the palindrome_check method? Provide justification.	| O(1) because you create two variables(i and j) regardless of the size of the given string.  	|
+|  What is the time complexity of the encode_repeating method? Provide justification.	| O(n) because for a given string, you iterate through each element.  	|
+|  What is the space complexity of the encode_repeating method? Provide justification.	|  O(n) because even though you only create three variables (i, counter, and index), the .slice method creates a new array. 	|
