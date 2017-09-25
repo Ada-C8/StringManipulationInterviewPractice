@@ -39,8 +39,8 @@ end
 
 # A method to reverse the words in a sentence, in place.
 def reverse_sentence(my_sentence)
-  # front_counter = word.length
-  # back counter = my_sentence.length - word.length
+  string_reverse(my_sentence)
+  reverse_words(my_sentence)
 end
 
 # A method to check if the input string is a palindrome.
