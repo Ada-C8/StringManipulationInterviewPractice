@@ -110,7 +110,28 @@ end
 # with a number representing the frequncy. The replacement is done only if the
 # string length will get reduced by the process.
 def encode_repeating(my_string)
-  puts "NOT IMPLEMENTED"
+  original_length = my_string.length
+  iteration_count = 1
+
+  letter_count = 1
+  while iteration_count <= original_length
+    current_letter = my_string[0]
+    if current_letter != my_string[1]
+      if letter_count == 1
+        my_string << "#{current_letter}"
+      elsif letter_count == 2
+        my_string << "#{current_letter * 2}"
+      else
+        my_string << "#{current_letter}#{letter_count}"
+      end
+      current_letter = my_string[1]
+      letter_count = 0
+    end
+    my_string[0] = ""
+    letter_count += 1
+    iteration_count += 1
+  end
+
 end
 
 ### ---- END OF METHODS
@@ -158,22 +179,22 @@ puts "BUG: empty is not a palindrome and should return false" if palindrome_chec
 puts "Palindrome test complete."
 
 # Optional Question #5
-# puts "Test 5: Encode test"
-# test1 = "aaabbbbbcccc"
-# encode_repeating(test1)
-# if test1 != "a3b5c4"
-#   puts "BUG! 'aaabbbbbcccc' should get encoded to 'a3b5c4', not '#{test1}'"
-# end
-#
-# test2 = "xxxyttttgeee"
-# encode_repeating(test2)
-# if test2 != "x3yt4ge3"
-#   puts "BUG! 'xxxyttttgeee' should get encoded to 'x3yt4ge3', not '#{test2}'"
-# end
-#
-# test3 = "ddbbfffgjjjj"
-# encode_repeating(test3)
-# if test3 != "ddbbf3gj4"
-#   puts "BUG! 'ddbbfffgjjjj' should get encoded to 'ddbbf3gj4', not '#{test3}'"
-# end
-# puts "Encode test complete."
+puts "Test 5: Encode test"
+test1 = "aaabbbbbcccc"
+encode_repeating(test1)
+if test1 != "a3b5c4"
+  puts "BUG! 'aaabbbbbcccc' should get encoded to 'a3b5c4', not '#{test1}'"
+end
+
+test2 = "xxxyttttgeee"
+encode_repeating(test2)
+if test2 != "x3yt4ge3"
+  puts "BUG! 'xxxyttttgeee' should get encoded to 'x3yt4ge3', not '#{test2}'"
+end
+
+test3 = "ddbbfffgjjjj"
+encode_repeating(test3)
+if test3 != "ddbbf3gj4"
+  puts "BUG! 'ddbbfffgjjjj' should get encoded to 'ddbbf3gj4', not '#{test3}'"
+end
+puts "Encode test complete."
