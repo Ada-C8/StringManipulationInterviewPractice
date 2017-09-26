@@ -6,13 +6,13 @@ What is the time and space complexity for each method you implemented? Provide j
 
 |  Question 	|  Answer 	|
 |---	|---	|
-|  What is the time complexity of the string_reverse method? Provide justification.	|   	|
-|  What is the space complexity of the string_reverse method? Provide justification.	|   	|
-|  What is the time complexity of the reverse_words method? Provide justification.	|   	|
-|  What is the space complexity of the reverse_words method? Provide justification.	|   	|
-|  What is the time complexity of the reverse_sentence method? Provide justification.	|   	|
-|  What is the space complexity of the reverse_sentence method? Provide justification.	|   	|
-|  What is the time complexity of the palindrome_check method? Provide justification.	|   	|
-|  What is the space complexity of the palindrome_check method? Provide justification.	|   	|
-|  What is the time complexity of the encode_repeating method? Provide justification.	|   	|
-|  What is the space complexity of the encode_repeating method? Provide justification.	|   	|
+|  What is the time complexity of the string_reverse method? Provide justification.	|  The time complexity is O(1) + O(n/2), for the local variables and then it takes n/2 time to reverse each element in the string. Overall, the time complexity is O(n). 	|
+|  What is the space complexity of the string_reverse method? Provide justification.	|  The space complexity is constant O(1), as the string is being reversed in place so is not taking up any extra space. A few bytes are being used for local variables.	|
+|  What is the time complexity of the reverse_words method? Provide justification.	| The time complexity is O(n), going through each character in the string. As the string grows the rate of time it takes to go through it grows at the same rate.	|
+|  What is the space complexity of the reverse_words method? Provide justification.	| The space complexity is constant O(1). Three local variables were created, taking up 6 bytes every time the method is run. |
+|  What is the time complexity of the reverse_sentence method? Provide justification.	| The time complexity is O(n) for each step (first to reverse each word in the string, and then to reverse the entire string).	|
+|  What is the space complexity of the reverse_sentence method? Provide justification.	| The space complexity is constant, as for each step we are just creating a few local variables. 	|
+|  What is the time complexity of the palindrome_check method? Provide justification.	| The time complexity is O(n), as we need to check every character in the string. As the string length grows, the time it takes to check each character grows at the same rate.	|
+|  What is the space complexity of the palindrome_check method? Provide justification.	| The space complexity is constant O(1), as we are only creating a couple local variables.	|
+|  What is the time complexity of the encode_repeating method? Provide justification.	| The time complexity is linear O(n) as we are checking any character for repeated ones, so as the string of characters grows the time it take to check the string will grow at the same rate.  	|
+|  What is the space complexity of the encode_repeating method? Provide justification.	|  The space complexity is constant, as we are creating a few local variables, and replacing and deleting the characters in place.	|
