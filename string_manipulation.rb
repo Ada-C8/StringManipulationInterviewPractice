@@ -13,10 +13,29 @@ def string_reverse(my_string)
   return reversed_string
 end
 
-
+# puts "Test 2: reversed words"
+# my_words = "I can be an  engineer"
+# puts "Original: #{my_words}"
+# reversed_words = "I nac eb na  reenigne"
+# reverse_words(my_words)
 # aA method to reverse each word in a sentence, in place.
 def reverse_words(my_words)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  start = 0
+  segment = ""
+
+  while i < my_words.length
+    if my_words[i] == " "
+      my_words[start..(i-1)] = string_reverse(segment)
+      segment = ""
+      start = i + 1
+    else
+      segment << my_words[i]
+    end #if statement
+    i += 1
+  end #while statement
+  my_words[start..(i-1)] = string_reverse(segment)
+  return my_words
 end
 
 # A method to reverse the words in a sentence, in place.
@@ -39,16 +58,16 @@ def encode_repeating(my_string)
 end
 
 ### ---- END OF METHODS
-puts "Test 1: reverse a string"
-my_string = "Lovelace"
-puts "Original string: #{my_string}"
-reversed_string = "ecalevoL"
-string_reverse(my_string)
-if my_string == reversed_string
-  puts "String reversed correctly. Reversed string: #{reversed_string}"
-else
-  puts "BUG! The reversed string should be '#{reversed_string}' and not '#{my_string}'"
-end
+# puts "Test 1: reverse a string"
+# my_string = "Lovelace"
+# puts "Original string: #{my_string}"
+# reversed_string = "ecalevoL"
+# string_reverse(my_string)
+# if my_string == reversed_string
+#   puts "String reversed correctly. Reversed string: #{reversed_string}"
+# else
+#   puts "BUG! The reversed string should be '#{reversed_string}' and not '#{my_string}'"
+# end
 
 puts "Test 2: reversed words"
 my_words = "I can be an  engineer"
@@ -60,27 +79,27 @@ if my_words == reversed_words
 else
   puts "BUG! The reversed words should be '#{reversed_words}' and not '#{my_words}'"
 end
-
-puts "Test 3: reversed sentence"
-sentence = "Yoda  is   awesome"
-puts "Original: #{sentence}"
-reversed_sentence = "awesome   is  Yoda"
-reverse_sentence(sentence)
-if sentence == reversed_sentence
-  puts "Sentence reversed correctly. Reversed sentence: '#{reversed_sentence}'"
-else
-  puts "BUG! The reversed sentence should be '#{reversed_sentence}' and not '#{sentence}'"
-end
-
-puts "Test 4: Palindrome check"
-phrase = "madam"
-puts "BUG: madam is a palindrome and should return true" if palindrome_check(phrase) != true
-phrase = "empty"
-puts "BUG: empty is not a palindrome and should return false" if palindrome_check(phrase) != false
-# optional challenge
-# phrase = "nurses run"
-# puts "BUG: 'nurses run' is a palindrome and should return true" if palindrome_check(phrase) != true
-puts "Palindrome test complete."
+#
+# puts "Test 3: reversed sentence"
+# sentence = "Yoda  is   awesome"
+# puts "Original: #{sentence}"
+# reversed_sentence = "awesome   is  Yoda"
+# reverse_sentence(sentence)
+# if sentence == reversed_sentence
+#   puts "Sentence reversed correctly. Reversed sentence: '#{reversed_sentence}'"
+# else
+#   puts "BUG! The reversed sentence should be '#{reversed_sentence}' and not '#{sentence}'"
+# end
+#
+# puts "Test 4: Palindrome check"
+# phrase = "madam"
+# puts "BUG: madam is a palindrome and should return true" if palindrome_check(phrase) != true
+# phrase = "empty"
+# puts "BUG: empty is not a palindrome and should return false" if palindrome_check(phrase) != false
+# # optional challenge
+# # phrase = "nurses run"
+# # puts "BUG: 'nurses run' is a palindrome and should return true" if palindrome_check(phrase) != true
+# puts "Palindrome test complete."
 
 # Optional Question #5
 # puts "Test 5: Encode test"
