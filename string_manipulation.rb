@@ -1,7 +1,35 @@
+require 'pry'
+
 # A method to reverse a string in place.
 def string_reverse(my_string)
-  puts "NOT IMPLEMENTED"
+  length = my_string.length
+  i = 0
+  j = length - 1
+
+  while i < j
+    temp = my_string[i]
+    my_string[i] = my_string[j]
+    my_string[j] = temp
+    i += 1
+    j -= 1
+  end
 end
+
+# # Reverse used on an array from restricted arrays
+# # Reverses the values in the integer array in place
+# def reverse(array, length)
+#   # puts "NOT IMPLEMENTED"
+#   i = 0
+#   j = length - 1
+#
+#   while i < j
+#     temp = array[i]
+#     array[i] = array[j]
+#     array[j] = temp
+#     i += 1
+#     j -= 1
+#   end
+# end
 
 # A method to reverse each word in a sentence, in place.
 def reverse_words(my_words)
