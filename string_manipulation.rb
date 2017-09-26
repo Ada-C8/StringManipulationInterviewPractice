@@ -1,22 +1,108 @@
+require 'pry'
+
 # A method to reverse a string in place.
 def string_reverse(my_string)
-  puts "NOT IMPLEMENTED"
+  temp = ""
+  i = 0
+  while i <= (my_string.length - 1)  / 2
+    temp = my_string[i]
+    my_string[i] = my_string[my_string.length - (1 + i)]
+    my_string[my_string.length - (1 + i)] = temp
+    i += 1
+  end
 end
+# Time Complexity: O(n) because the only while loop is contingent on how long the string is
+# Space Complexity: O(1), the only local variable is temp, no other variables are created
+
 
 # A method to reverse each word in a sentence, in place.
 def reverse_words(my_words)
-  puts "NOT IMPLEMENTED"
+  i = 0
+
+  while i <= my_words.length
+    # get each word to reverse
+    current_word = ""
+    # a word ends if the last character is a space or nil
+    while (my_words[i] != nil && my_words[i] != " ")
+    current_word << my_words[i]
+    i += 1
+    end
+
+    # reverse each word with string_reverse
+    current_word_index = 0
+    while(current_word_index < current_word.length)
+      my_words[i - 1 - current_word_index] = current_word[current_word_index]
+      current_word_index += 1
+    end
+    i += 1
+  end
+
+  # Time Complexity:  .length = O(N), inside loops = (O(M) + O(M); O(N * 2M)); O(N^2)
+  #                   where m is the length of each word within my_words
+  # Space Complexity: O(1), the only other variable I'm creating is my current_word and current_word_index variables.
+  #                   And those variables get reassigned values.
+
 end
 
 # A method to reverse the words in a sentence, in place.
 def reverse_sentence(my_sentence)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  original_length = my_sentence.length
+  word_array = []
+
+  # gather the words and spaces into an array
+  while i < my_sentence.length
+    # save each word into array
+    word = ""
+    while my_sentence[i] != " " && my_sentence[i] != nil
+      word << my_sentence[i]
+      i += 1
+    end
+    word_array << word
+
+    # save each space as its own object in array
+    if my_sentence[i] == " "
+      word_array << " "
+      i += 1
+    end
+  end
+
+  # get reversed sentence from word_array and put it back into my_sentence it backwards
+  j = word_array.length - 1
+  while j > -1
+    my_sentence << word_array[j]
+    j-=1
+  end
+
+  # delete the first half of the new string
+  while my_sentence.length > original_length
+    my_sentence[0] = ""
+  end
+
 end
 
 # A method to check if the input string is a palindrome.
 # Return true if the string is a palindrome. Return false otherwise.
 def palindrome_check(my_phrase)
-  puts "NOT IMPLEMENTED"
+  left_counter = 0
+  right_counter = my_phrase.length - 1
+
+  while left_counter != right_counter
+    if my_phrase[left_counter] == " "
+      left_counter += 1
+      next
+    end
+
+    if my_phrase[right_counter] == " "
+      right_counter -= 1
+      next
+    end
+    if my_phrase[left_counter] != my_phrase[right_counter]
+      return false
+    end
+    left_counter += 1
+    right_counter -= 1
+  end
   return true
 end
 
