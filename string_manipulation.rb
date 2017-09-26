@@ -29,6 +29,7 @@ def reverse_words(my_words)
   j = 0
   k = 0
   i = 0
+  words = []
 
   while i < (string_length - 1)
     until my_words[i] =~ /^\s*$/ || i > string_length - 1
@@ -43,10 +44,17 @@ def reverse_words(my_words)
       my_words[k] = temp
       j += 1
       k -= 1
+      word = my_words[first_index...last_index]
+      if word[-1] =~ /^\s*$/
+        word.chop
+      end
+      words << word
     end # inner while
     first_index = (last_index + 1)
     i += 1
   end # outer while
+  words.join(" ")
+  my_words = words
   return my_words
 end # reverse_words
 
@@ -59,7 +67,18 @@ end
 # A method to check if the input string is a palindrome.
 # Return true if the string is a palindrome. Return false otherwise.
 def palindrome_check(my_phrase)
-  puts "NOT IMPLEMENTED"
+  length = my_phrase.length
+  my_phrase = my_phrase.downcase
+  i = 0
+  j = length - 1
+
+  until i == j
+    if my_phrase[i] != my_phrase[j]
+      return false
+    end # if
+    i += 1
+    j -= 1
+  end # until
   return true
 end
 
