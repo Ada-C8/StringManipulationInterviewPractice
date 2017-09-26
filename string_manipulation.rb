@@ -1,12 +1,55 @@
 # A method to reverse a string in place.
 def string_reverse(my_string)
-  puts "NOT IMPLEMENTED"
-end
+  length = my_string.length
+
+  if length < 1
+    return my_string
+  end # if
+
+  i = 0
+  j = length - 1
+  while i < j
+    temp = my_string[i]
+    my_string[i] = my_string[j]
+    my_string[j] = temp
+    i += 1
+    j -= 1
+  end # inner while
+  return my_string
+end # string_reverse
 
 # A method to reverse each word in a sentence, in place.
+# need to only reverse words
+# Hint: Check if creating a helper method that reverses a subset of the string given starting index and ending index as parameters helps.
 def reverse_words(my_words)
-  puts "NOT IMPLEMENTED"
-end
+  string_length = my_words.length
+
+  first_index = 0
+  last_index = 0
+  j = 0
+  k = 0
+  i = 0
+
+  while i < (string_length - 1)
+    until my_words[i] =~ /^\s*$/ || i > string_length - 1
+      last_index = i
+      i += 1
+    end # until
+    j = first_index
+    k = last_index
+    while j < k
+      temp = my_words[j]
+      my_words[j] = my_words[k]
+      my_words[k] = temp
+      j += 1
+      k -= 1
+    end # inner while
+    first_index = (last_index + 1)
+    i += 1
+  end # outer while
+  return my_words
+end # reverse_words
+
 
 # A method to reverse the words in a sentence, in place.
 def reverse_sentence(my_sentence)
