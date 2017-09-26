@@ -130,6 +130,52 @@ def encode_repeating(my_string)
   return my_string
 end
 
+def encode_repeating2(my_string)
+  return my_string if my_string.length < 3
+
+  entering = 0
+  reading = 0
+  count = 1
+
+  while reading < my_string.length - 1
+
+    if my_string[reading] == my_string[reading+1] #if the next two are the same
+      count += 1
+      reading += 1
+    elsif count > 2 #they arent the same but the count is enough to replace
+      my_string[entering] = my_string[reading]
+      my_string[entering + 1]= "#{count.to_s}"
+      count = 1
+      entering += 2
+      reading += 1
+    elsif count == 2 #they arent the same and the count is 2
+      count = 1
+      reading += 1
+      entering = reading
+    else #they arent the same and the count is 1
+      my_string[entering] = my_string[reading]
+      reading += 1
+      entering += 1
+    end
+  end
+
+  if entering <= my_string.length
+    if count > 2 #they are the same and the count is enough to replace
+      my_string[entering] = my_string[reading]
+      my_string[entering + 1]= "#{count.to_s}"
+      entering += 2
+    elsif count == 2 #they are the same and the count is 2
+      entering += 2
+    else #they arent the same and the count is 1
+      my_string[entering] = my_string[reading]
+      entering += 1
+    end
+  end
+
+  my_string.slice!(entering..-1)
+  return my_string
+end
+
 ### ---- END OF METHODS
 puts "Test 1: reverse a string"
 my_string = "Lovelace"
@@ -207,6 +253,32 @@ end
 
 test4 = "babbf33x000j"
 encode_repeating(test4)
+if test4 != "babbf33x03j"
+  puts "BUG! 'babbf33x000j' should get encoded to 'babbf33x03j', not '#{test4}'"
+end
+puts "Encode test complete."
+
+puts "Test 5b: Encode test"
+test1 = "aaabbbbbcccc"
+encode_repeating2(test1)
+if test1 != "a3b5c4"
+  puts "BUG! 'aaabbbbbcccc' should get encoded to 'a3b5c4', not '#{test1}'"
+end
+
+test2 = "xxxyttttgeee"
+encode_repeating2(test2)
+if test2 != "x3yt4ge3"
+  puts "BUG! 'xxxyttttgeee' should get encoded to 'x3yt4ge3', not '#{test2}'"
+end
+
+test3 = "ddbbfffgjjjj"
+encode_repeating2(test3)
+if test3 != "ddbbf3gj4"
+  puts "BUG! 'ddbbfffgjjjj' should get encoded to 'ddbbf3gj4', not '#{test3}'"
+end
+
+test4 = "babbf33x000j"
+encode_repeating2(test4)
 if test4 != "babbf33x03j"
   puts "BUG! 'babbf33x000j' should get encoded to 'babbf33x03j', not '#{test4}'"
 end
