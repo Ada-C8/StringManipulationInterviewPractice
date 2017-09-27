@@ -81,6 +81,13 @@ def reverse_sentence(my_sentence)
 
 end
 
+# Time Complexity:  While it seems like the first half is O(N^2), it is actually O(N) because the inner loops are also updating
+#                   the counter i. the outer while here serves as more of a check rather than an iterator.
+#                   The other loops outside are all O(N) (say O(K) for the iterator that uses word_array.length)
+#                   because the loops last as long as a variable's lengths. So O(N + 2K) is O(N).
+# Space Complexity: O(1), by declaring my variables: i, original_length, word_array and my local variable word,
+#                   I am not creating new instances of a variable but rather reassigning values to them.
+
 # A method to check if the input string is a palindrome.
 # Return true if the string is a palindrome. Return false otherwise.
 def palindrome_check(my_phrase)
@@ -105,6 +112,9 @@ def palindrome_check(my_phrase)
   end
   return true
 end
+
+# Time Complexity:  O(N) because the while loop will run exactly N/2 times at most in every successful palindrome
+# Space Complexity: O(1) because here my local variables are my left and right counters only without new instances of variables
 
 # A method that updates the string by replacing consecutive repeating characters
 # with a number representing the frequncy. The replacement is done only if the
@@ -131,8 +141,13 @@ def encode_repeating(my_string)
     letter_count += 1
     iteration_count += 1
   end
-
 end
+
+# Time Complexity:  O(N) because although the length of the string is being modified depending on how many types of letters
+#                   there are, this approach has to go through each object in the original string to determine the count of each letter
+# Space Complexity: O(1) because here my only local variables are iteration_count that keeps track of the number of iterations
+#                   and my original_length variable.
+
 
 ### ---- END OF METHODS
 puts "Test 1: reverse a string"
