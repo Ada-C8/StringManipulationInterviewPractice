@@ -1,23 +1,58 @@
 # A method to reverse a string in place.
+require 'pry'
+
 def string_reverse(my_string)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  x = my_string.length - 1
+  while i < x
+    temp = my_string[i]
+    my_string[i] = my_string[x]
+    my_string[x] = temp
+    i += 1
+    x -= 1
+  end
 end
 
 # A method to reverse each word in a sentence, in place.
 def reverse_words(my_words)
-  puts "NOT IMPLEMENTED"
+  index = 0
+  i = 0
+  while index < my_words.length
+    until my_words[index] == " " || index == my_words.length
+      index += 1
+    end
+    k = index - 1
+    while i < k do
+      temp = my_words[i]
+      my_words[i] = my_words[k]
+      my_words[k] = temp
+      i += 1
+      k -= 1
+    end
+    index += 1
+    i = index
+  end
+  return my_words
 end
 
 # A method to reverse the words in a sentence, in place.
 def reverse_sentence(my_sentence)
-  puts "NOT IMPLEMENTED"
+  string_reverse(my_sentence)
+  reverse_words(my_sentence)
 end
 
 # A method to check if the input string is a palindrome.
 # Return true if the string is a palindrome. Return false otherwise.
 def palindrome_check(my_phrase)
-  puts "NOT IMPLEMENTED"
-  return true
+  if my_phrase.length == 1 || my_phrase.length == 0
+    return true
+  else
+    if my_phrase[0] == my_phrase[-1]
+      palindrome_check(my_phrase[1..-2])
+    else
+      return false
+    end
+  end
 end
 
 # A method that updates the string by replacing consecutive repeating characters
