@@ -33,9 +33,10 @@ def reverse_words(my_words)
     i += 1
   end
 end
+
 # Helper method for reverse_words
 def reverse_word(start_index, end_index, words)
-  while start_index < end_index # O(n) will need to iterate over the entire length of the word
+  while start_index < end_index # O(n) will need to iterate over a portion of the entire string
     temp_var = words[start_index]
     words[start_index] = words[end_index]
     words[end_index] = temp_var
@@ -44,7 +45,7 @@ def reverse_word(start_index, end_index, words)
   end
   return words # Returns all words with only one word reversed
 end
-# Time: O(n) * O(n) for WORST CASE  --> O(n2^)
+# Time: O(n) + O(n) for WORST CASE  --> O(n)
 # Space: O(1) --> Constant as no new data is being created
 
 
@@ -53,7 +54,7 @@ def reverse_sentence(my_sentence)
   string_reverse(my_sentence)
   reverse_words(my_sentence)
 end
-# Time: O(n) + O(n2) = O(2n2) --> O(n2) Drop constants
+# Time: O(n) + O(n) --> O(n)
 # Space: O(1) + O(1) = O(1) --> O(1) Independent. Never create new variables
 
 
