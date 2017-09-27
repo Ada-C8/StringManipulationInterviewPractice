@@ -86,8 +86,41 @@ end
 # with a number representing the frequency. The replacement is done only if the
 # string length will get reduced by the process.
 def encode_repeating(my_string)
-  puts "NOT IMPLEMENTED"
+  def encode_repeating(my_string)
+  i = 0
+  # first_index = 0
+  # last_index = 0
+
+  while i < my_string.length
+  counter = 0
+  element = my_string[i]
+  until my_string[i] != element || i > my_string.length
+    if my_string[i+ 1] == element
+      counter += 1
+    end
+      i += 1
+  end # inner while
+  puts counter
+  # last_index = last_index + counter
+    if counter > 1
+      my_string[i - 1] = counter.to_s
+      # my_string[(i + 1)..counter] == (counter + 1).to_s
+    end # if
+
+    (counter - 1).times do
+      my_string.slice!(i - 2)
+    end
+
+  i = i - (counter - 1)
+  i += 1
+  end # outer while
+  return my_string
+end # encode_repeating    
 end
+
+
+
+
 
 ### ---- END OF METHODS
 puts "Test 1: reverse a string"
