@@ -61,36 +61,41 @@ end # reverse_words
 
 # A method to reverse the words in a sentence, in place.
 def reverse_sentence(my_sentence)
-  # TODO: make this method work in place by adding to the front of the sentence and deleting from the end.
-  # BELOW IS ATTEMPT TO REVERSE THE SENTENCE IN PLACE
-  length = my_sentence.length
-  i = (length - 1)
-  starting_index = (length - 1)
+  # NOTE: simply using the two previous methods will reverse the order of the words in a sentence!
+  string_reverse(my_sentence)
+  reverse_words(my_sentence)
+  return my_sentence
 
-  until i < 0
-    # select a word (starting at the end of the sentence)
-    until my_sentence[i] == ' ' || i < 0
-      i -= 1
-    end
-    # move the word to the end of the sentence
-    move_to_start = my_sentence[(i + 1)..starting_index]
-    my_sentence << move_to_start
-    starting_index = i
+  # NOTE: BELOW IS ATTEMPT TO REVERSE THE SENTENCE IN PLACE. It doesn't work well because it repeates the sentence twice. Also Shruit says that using .slice! and my_sentence[(i + 1)..starting_index] add too much space complexity.
 
-    # select spaces (starting at the end of the string)
-    while my_sentence[i] == ' ' && !(i < 0)
-      i -= 1
-    end # while
-    # move the spaces to the end of the word
-    space_to_start = my_sentence[(i + 1)..starting_index]
-    my_sentence << space_to_start
-    starting_index = i
-  end # while
-  # Delete the orginal string only leaving the reversed string I added to the end of the origional string (starts at index length)
-   my_sentence.slice!(0..(length - 1))
+  # length = my_sentence.length
+  # i = (length - 1)
+  # starting_index = (length - 1)
+  #
+  # until i < 0
+  #   # select a word (starting at the end of the sentence)
+  #   until my_sentence[i] == ' ' || i < 0
+  #     i -= 1
+  #   end
+  #   # move the word to the end of the sentence
+  #   move_to_start = my_sentence[(i + 1)..starting_index]
+  #   my_sentence << move_to_start
+  #   starting_index = i
+  #
+  #   # select spaces (starting at the end of the string)
+  #   while my_sentence[i] == ' ' && !(i < 0)
+  #     i -= 1
+  #   end # while
+  #   # move the spaces to the end of the word
+  #   space_to_start = my_sentence[(i + 1)..starting_index]
+  #   my_sentence << space_to_start
+  #   starting_index = i
+  # end # while
+  # # Delete the orginal string only leaving the reversed string I added to the end of the origional string (starts at index length)
+  #  my_sentence.slice!(0..(length - 1))
 
 
-  # BELOW WORKS TO REVERSE A SENTNCE, BUT I'M NOT SURE IF THIS QUALIFIES AS IN PLACE...
+  # NOTE: BELOW WORKS TO REVERSE A SENTNCE, BUT I'M NOT SURE IF THIS QUALIFIES AS IN PLACE...
 #   length = my_sentence.length
 #   i = 0
 #   starting_index = 0
