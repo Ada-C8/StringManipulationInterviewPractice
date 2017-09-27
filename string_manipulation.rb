@@ -61,64 +61,65 @@ end # reverse_words
 
 # A method to reverse the words in a sentence, in place.
 def reverse_sentence(my_sentence)
-  # BELOW IS ATTEMPT TO REVERSE THE SENTENCE IN PLACE 
-  # length = my_sentence.length
-  # i = (length - 1)
-  # starting_index = (length - 1)
-  #
-  # until i == 0
-  #   until my_sentence[i] == ' ' || i == 0
-  #     i -= 1
-  #   end
-  #   move_to_start = my_sentence[(i + 1)..starting_index]
-  #   my_sentence = move_to_start << my_sentence
-  #   puts "did i get here"
-  #   puts " word:#{move_to_start}"
-  #   starting_index = i
-  #
-  #   while my_sentence[i] == ' ' && i != 0
-  #     i -= 1
-  #   end # while
-  #
-  #   move_to_start = my_sentence[(i + 1)..starting_index]
-  #   puts "space:#{move_to_start}"
-  #   my_sentence = move_to_start << my_sentence    # words << word
-  #   starting_index = i
-  # end # while
-
-
-  # BELOW WORKS TO REVERSE A SENTNCE, BUT IT DOESN'T DO IT IN PLACE
+  # TODO: make this method work in place by adding to the front of the sentence and deleting from the end.
+  # BELOW IS ATTEMPT TO REVERSE THE SENTENCE IN PLACE
   length = my_sentence.length
-  i = 0
-  starting_index = 0
-  words = []
+  i = (length - 1)
+  starting_index = (length - 1)
 
-  while i < (length - 1)
-    until my_sentence[i] == ' ' || i > (length - 1)
-      i += 1
+  until i < 0
+    # select a word (starting at the end of the sentence)
+    until my_sentence[i] == ' ' || i < 0
+      i -= 1
     end
-    word = my_sentence[starting_index..(i - 1)]
-     words << word
+    # move the word to the end of the sentence
+    move_to_start = my_sentence[(i + 1)..starting_index]
+    my_sentence << move_to_start
     starting_index = i
 
-    while my_sentence[i] == ' ' && i < (length - 1)
-      i += 1
+    # select spaces (starting at the end of the string)
+    while my_sentence[i] == ' ' && !(i < 0)
+      i -= 1
     end # while
-
-    word = my_sentence[starting_index..(i - 1)]
-     words << word
+    # move the spaces to the end of the word
+    space_to_start = my_sentence[(i + 1)..starting_index]
+    my_sentence << space_to_start
     starting_index = i
   end # while
+  # Delete the orginal string only leaving the reversed string I added to the end of the origional string (starts at index length)
+   my_sentence.slice!(0..(length - 1))
 
-  j = words.length
-  reversed_words = []
-   while j > 0
-     j -= 1
-     reversed_words << words[j]
-   end
-   sentence = reversed_words.join('')
-   puts "the sentence is #{sentence}"
-  return sentence
+
+  # BELOW WORKS TO REVERSE A SENTNCE, BUT I'M NOT SURE IF THIS QUALIFIES AS IN PLACE...
+#   length = my_sentence.length
+#   i = 0
+#   starting_index = 0
+#   words = []
+#
+#   while i < (length - 1)
+#     until my_sentence[i] == ' ' || i > (length - 1)
+#       i += 1
+#     end
+#     word = my_sentence[starting_index..(i - 1)]
+#      words << word
+#     starting_index = i
+#
+#     while my_sentence[i] == ' ' && i < (length - 1)
+#       i += 1
+#     end # while
+#
+#     word = my_sentence[starting_index..(i - 1)]
+#      words << word
+#     starting_index = i
+#   end # while
+#
+#   j = words.length
+#    while j > 0
+#      j -= 1
+#      my_sentence << words[j]
+#    end
+#   my_sentence.slice!(0..(length - 1))
+#   return my_sentence
 end # reverse_sentence
 
 # A method to check if the input string is a palindrome.
@@ -143,7 +144,7 @@ end
 # with a number representing the frequency. The replacement is done only if the
 # string length will get reduced by the process.
 def encode_repeating(my_string)
-  # TODO: make it work when there are multiple reapeated letter sections in a row (works for aaaaxbbbb but not aaabbb. Also doesn't work for aaahvbbbb)
+  # TODO: make it work when there are multiple reapeated letter sections in a row (works for aaaaxbbbb but not aaabbb. Also doesn't work for aaahvbbbb). Why is this????
   i = 0
   starting_index = 0
 
