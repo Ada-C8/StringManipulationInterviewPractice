@@ -50,9 +50,26 @@ end
 # A method to check if the input string is a palindrome.
 # Return true if the string is a palindrome. Return false otherwise.
 def palindrome_check(my_phrase)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  j = my_phrase.length - 1
+
+  until i >= j
+    if my_phrase[i] == " "
+      i += 1
+    elsif my_phrase[j] == " "
+      j -= 1
+    end #first if statement
+
+    if my_phrase[i] == my_phrase[j]
+      i += 1
+      j -= 1
+    else
+      return false
+    end #second if statement
+  end  #until
   return true
-end
+end #method
+
 
 # A method that updates the string by replacing consecutive repeating characters
 # with a number representing the frequncy. The replacement is done only if the
@@ -96,15 +113,15 @@ else
   puts "BUG! The reversed sentence should be '#{reversed_sentence}' and not '#{sentence}'"
 end
 
-# puts "Test 4: Palindrome check"
-# phrase = "madam"
-# puts "BUG: madam is a palindrome and should return true" if palindrome_check(phrase) != true
-# phrase = "empty"
-# puts "BUG: empty is not a palindrome and should return false" if palindrome_check(phrase) != false
-# # optional challenge
-# # phrase = "nurses run"
-# # puts "BUG: 'nurses run' is a palindrome and should return true" if palindrome_check(phrase) != true
-# puts "Palindrome test complete."
+puts "Test 4: Palindrome check"
+phrase = "madam"
+puts "BUG: madam is a palindrome and should return true" if palindrome_check(phrase) != true
+phrase = "empty"
+puts "BUG: empty is not a palindrome and should return false" if palindrome_check(phrase) != false
+puts "optional challenge"
+phrase = "nurses run"
+puts "BUG: 'nurses run' is a palindrome and should return true" if palindrome_check(phrase) != true
+puts "Palindrome test complete."
 
 # Optional Question #5
 # puts "Test 5: Encode test"
