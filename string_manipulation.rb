@@ -29,7 +29,9 @@ def reverse_words(my_words)
     until i == whitespaces.length
       min = (whitespaces[i-1]) + 1
       max = whitespaces[i]
-      if min > max
+      if i == 0 && max > 1
+        min = 0
+      elsif min > max
         min = max
       end
       reverse = string_reverse(my_words[min...max])
@@ -44,7 +46,8 @@ end
 
 # A method to reverse the words in a sentence, in place.
 def reverse_sentence(my_sentence)
-  puts "NOT IMPLEMENTED"
+  string_reverse(my_sentence)
+  reverse_words(my_sentence)
 end
 
 # A method to check if the input string is a palindrome.
