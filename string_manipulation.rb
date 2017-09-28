@@ -13,16 +13,15 @@ def string_reverse(my_string)
   return reversed_string
 end
 
-# puts "Test 2: reversed words"
-# my_words = "I can be an  engineer"
-# puts "Original: #{my_words}"
-# reversed_words = "I nac eb na  reenigne"
-# reverse_words(my_words)
-# aA method to reverse each word in a sentence, in place.
 def reverse_words(my_words)
   i = 0
   start = 0
   segment = ""
+
+  until my_words[i] != " "
+    i += 1
+    start += 1
+  end
 
   while i < my_words.length
     if my_words[i] == " "
@@ -38,9 +37,14 @@ def reverse_words(my_words)
   return my_words
 end
 
+
+# sentence = "Yoda  is   awesome"
+# puts "Original: #{sentence}"
+# reversed_sentence = "awesome   is  Yoda"
 # A method to reverse the words in a sentence, in place.
 def reverse_sentence(my_sentence)
-  puts "NOT IMPLEMENTED"
+  string_reverse(my_sentence)
+  return reverse_words(my_sentence)
 end
 
 # A method to check if the input string is a palindrome.
@@ -58,16 +62,16 @@ def encode_repeating(my_string)
 end
 
 ### ---- END OF METHODS
-# puts "Test 1: reverse a string"
-# my_string = "Lovelace"
-# puts "Original string: #{my_string}"
-# reversed_string = "ecalevoL"
-# string_reverse(my_string)
-# if my_string == reversed_string
-#   puts "String reversed correctly. Reversed string: #{reversed_string}"
-# else
-#   puts "BUG! The reversed string should be '#{reversed_string}' and not '#{my_string}'"
-# end
+puts "Test 1: reverse a string"
+my_string = "Lovelace"
+puts "Original string: #{my_string}"
+reversed_string = "ecalevoL"
+string_reverse(my_string)
+if my_string == reversed_string
+  puts "String reversed correctly. Reversed string: #{reversed_string}"
+else
+  puts "BUG! The reversed string should be '#{reversed_string}' and not '#{my_string}'"
+end
 
 puts "Test 2: reversed words"
 my_words = "I can be an  engineer"
@@ -79,18 +83,19 @@ if my_words == reversed_words
 else
   puts "BUG! The reversed words should be '#{reversed_words}' and not '#{my_words}'"
 end
-#
-# puts "Test 3: reversed sentence"
-# sentence = "Yoda  is   awesome"
-# puts "Original: #{sentence}"
-# reversed_sentence = "awesome   is  Yoda"
-# reverse_sentence(sentence)
-# if sentence == reversed_sentence
-#   puts "Sentence reversed correctly. Reversed sentence: '#{reversed_sentence}'"
-# else
-#   puts "BUG! The reversed sentence should be '#{reversed_sentence}' and not '#{sentence}'"
-# end
-#
+
+
+puts "Test 3: reversed sentence"
+sentence = "Yoda  is   awesome"
+puts "Original: #{sentence}"
+reversed_sentence = "awesome   is  Yoda"
+reverse_sentence(sentence)
+if sentence == reversed_sentence
+  puts "Sentence reversed correctly. Reversed sentence: '#{reversed_sentence}'"
+else
+  puts "BUG! The reversed sentence should be '#{reversed_sentence}' and not '#{sentence}'"
+end
+
 # puts "Test 4: Palindrome check"
 # phrase = "madam"
 # puts "BUG: madam is a palindrome and should return true" if palindrome_check(phrase) != true
