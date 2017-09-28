@@ -41,36 +41,31 @@ end
 
 # A method to reverse the words in a sentence, in place.
 def reverse_sentence(my_sentence)
-  i = 0
-  i2 = 0
-  word = []
-  while i < my_sentence.length
-    until my_sentence[i2+1] == ' ' || i2 == my_sentence.length
-      i2 += 1
+  i = my_sentence.length
+  i2 = i
+  temp = ''
+  while i > 0
+    until my_sentence[i-1] == ' ' || i == 0
+      i -= 1
     end
-    word = my_sentence[i..i2]
-    word.length.times {my_sentence.delete_at(i)}
-    my_sentence = word + my_sentence
-    i2 += 1
-    i = i2
-    if i2 >= my_sentence.length
-      return my_sentence.join
+    temp = my_sentence[i..i2]
+    my_sentence[i..i2] = ''
+    my_sentence << temp
+    i2 = i - 1
+    until my_sentence[i-1] != ' ' || i == 0
+      i -= 1
     end
-    until my_sentence[i2+1] != ' ' || i2 == my_sentence.length
-      i2 += 1
-    end
-    word = my_sentence[i..i2]
-    word.length.times {my_sentence.delete_at(i)}
-    my_sentence = word + my_sentence
-    i2 += 1
-    i = i2
+    temp = my_sentence[i..i2]
+    my_sentence[i..i2] = ''
+    my_sentence << temp
+    i2 = i - 1
   end
+  return my_sentence
 end
 
 # A method to check if the input string is a palindrome.
 # Return true if the string is a palindrome. Return false otherwise.
 def palindrome_check(my_phrase)
-  my_phrase = my_phrase.split('') # converting into a literal array of characters to allow for modification
   i = 0
   i2 = my_phrase.length  - 1
   while i < i2
@@ -93,30 +88,25 @@ end
 # with a number representing the frequncy. The replacement is done only if the
 # string length will get reduced by the process.
 def encode_repeating(my_string)
-  # my_string = my_string.split('') # converting into a literal array of characters to allow for modification
   # i = 0
   # i2 = 0
-  # count = 0
-  # while i2 < my_string.length
-  #   break if i2 > 100
-  #   while my_string[i2 + 1] == my_string[i]
+  # until i2 >= my_string.length
+  #   until my_string[i2 + 1] != my_string[i] || i2 == my_string.length
   #     i2 += 1
-  #     if i2 == my_string.length
-  #       i2 += 1
-  #       break
-  #     end
   #   end
-  #   i2 += 1
-  #   if i2 - i > 2
-  #     my_string[i + 1] = i2 - i
-  #     i += (i2 - i)
+  #   if (i2 - i + 1) > 2
+  #     my_string[i+1..i2] = "#{i2 - i + 1}"
+  #     i += 2
+  #   elsif (i2 - i + 1) == 2
+  #     i += 2
+  #   elsif (i2 - i + 1) == 1
+  #     i += 1
   #   end
-  #   until i >= i2
-  #     my_string.delete_at(i)
-  #     i2 -= 1
+  #   until my_string[i2 + 1] != my_string[i] || i2 == my_string.length
+  #     i2 += 1
   #   end
+  #   my_string[i+1..i2] = "#{i2 - i + 1}"
   # end
-  # return my_string.join
 end
 
 ## ---- END OF METHODS
@@ -163,7 +153,7 @@ phrase = "nurses run"
 puts "BUG: 'nurses run' is a palindrome and should return true" if palindrome_check(phrase) != true
 puts "Palindrome test complete."
 
-# Optional Question #5
+# # Optional Question #5
 # puts "Test 5: Encode test"
 # test1 = "aaabbbbbcccc"
 # encode_repeating(test1)
@@ -178,7 +168,7 @@ puts "Palindrome test complete."
 # end
 #
 # test3 = "ddbbfffgjjjj"
-# test3 = encode_repeating(test3)
+# encode_repeating(test3)
 # if test3 != "ddbbf3gj4"
 #   puts "BUG! 'ddbbfffgjjjj' should get encoded to 'ddbbf3gj4', not '#{test3}'"
 # end
