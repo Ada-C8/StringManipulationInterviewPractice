@@ -1,22 +1,86 @@
+require 'pry'
 # A method to reverse a string in place.
-def string_reverse(my_string)
-  puts "NOT IMPLEMENTED"
+def string_reverse(my_string, i = 0, i2 = (my_string.length)) # O(n), O(1)
+  i2 = i2 + i - 1
+  if i2 == 1 || i2 == 0 || i > i2
+    return my_string
+  end
+  temp = ''
+  while i < i2
+    temp = my_string[i]
+    # binding.pry
+    my_string[i] = my_string[i2]
+    my_string[i2] = temp
+    i += 1
+    i2 -= 1
+  end
+  return my_string
 end
 
 # A method to reverse each word in a sentence, in place.
 def reverse_words(my_words)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  i2 = 0
+  while i < my_words.length
+    until my_words[i2+1] == ' ' || i2 == my_words.length
+      i2 += 1
+    end
+    # binding.pry
+    if i2 == my_words.length
+      string_reverse(my_words, i, (i2 - i))
+    else
+      string_reverse(my_words, i, (i2 - i + 1))
+    end
+    i2 += 1
+    while my_words[i2] == ' '
+      i2 += 1
+    end
+    i = i2
+  end
 end
 
 # A method to reverse the words in a sentence, in place.
 def reverse_sentence(my_sentence)
-  puts "NOT IMPLEMENTED"
+  i = my_sentence.length
+  i2 = i
+  temp = ''
+  while i > 0
+    until my_sentence[i-1] == ' ' || i == 0
+      i -= 1
+    end
+    temp = my_sentence[i..i2]
+    my_sentence[i..i2] = ''
+    my_sentence << temp
+    i2 = i - 1
+    until my_sentence[i-1] != ' ' || i == 0
+      i -= 1
+    end
+    temp = my_sentence[i..i2]
+    my_sentence[i..i2] = ''
+    my_sentence << temp
+    i2 = i - 1
+  end
+  return my_sentence
 end
 
 # A method to check if the input string is a palindrome.
 # Return true if the string is a palindrome. Return false otherwise.
 def palindrome_check(my_phrase)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  i2 = my_phrase.length  - 1
+  while i < i2
+    if my_phrase[i] == ' '
+      i += 1
+    end
+    if my_phrase[i2] == ' '
+      i2 -= 1
+    end
+    unless my_phrase[i] == my_phrase[i2]
+      return false
+    end
+    i += 1
+    i2 -= 1
+  end
   return true
 end
 
@@ -24,10 +88,28 @@ end
 # with a number representing the frequency. The replacement is done only if the
 # string length will get reduced by the process.
 def encode_repeating(my_string)
-  puts "NOT IMPLEMENTED"
+  # i = 0
+  # i2 = 0
+  # until i2 >= my_string.length
+  #   until my_string[i2 + 1] != my_string[i] || i2 == my_string.length
+  #     i2 += 1
+  #   end
+  #   if (i2 - i + 1) > 2
+  #     my_string[i+1..i2] = "#{i2 - i + 1}"
+  #     i += 2
+  #   elsif (i2 - i + 1) == 2
+  #     i += 2
+  #   elsif (i2 - i + 1) == 1
+  #     i += 1
+  #   end
+  #   until my_string[i2 + 1] != my_string[i] || i2 == my_string.length
+  #     i2 += 1
+  #   end
+  #   my_string[i+1..i2] = "#{i2 - i + 1}"
+  # end
 end
 
-### ---- END OF METHODS
+## ---- END OF METHODS
 puts "Test 1: reverse a string"
 my_string = "Lovelace"
 puts "Original string: #{my_string}"
@@ -67,11 +149,11 @@ puts "BUG: madam is a palindrome and should return true" if palindrome_check(phr
 phrase = "empty"
 puts "BUG: empty is not a palindrome and should return false" if palindrome_check(phrase) != false
 # optional challenge
-# phrase = "nurses run"
-# puts "BUG: 'nurses run' is a palindrome and should return true" if palindrome_check(phrase) != true
+phrase = "nurses run"
+puts "BUG: 'nurses run' is a palindrome and should return true" if palindrome_check(phrase) != true
 puts "Palindrome test complete."
 
-# Optional Question #5
+# # Optional Question #5
 # puts "Test 5: Encode test"
 # test1 = "aaabbbbbcccc"
 # encode_repeating(test1)
