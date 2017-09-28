@@ -1,9 +1,8 @@
+require 'awesome_print'
 # A method to reverse a string in place.
 def string_reverse(my_string)
   length = my_string.length
-  if length == 0
-    return nil
-  elsif length == 1
+  if length <= 1
     return my_string
   else
     i = 0
@@ -16,11 +15,31 @@ def string_reverse(my_string)
       j -= 1
     end
   end
+  return my_string
 end
 
 # A method to reverse each word in a sentence, in place.
 def reverse_words(my_words)
-  puts "NOT IMPLEMENTED"
+  length = my_words.length
+  if length <= 1
+    return my_words
+  else
+    whitespaces = (0...length).find_all { |j| my_words[j,1] == ' ' }
+    i = 0
+    until i == whitespaces.length
+      min = (whitespaces[i-1]) + 1
+      max = whitespaces[i]
+      if min > max
+        min = max
+      end
+      reverse = string_reverse(my_words[min...max])
+      my_words[min...max] = reverse
+      i += 1
+    end
+    last = (whitespaces.last) + 1
+    my_words[last...my_words.length] = string_reverse(my_words[last...my_words.length])
+  end
+  return my_words
 end
 
 # A method to reverse the words in a sentence, in place.
