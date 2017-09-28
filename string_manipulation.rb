@@ -115,6 +115,8 @@ def encode_repeating(input_string)
   end
 
   result += encode_char(prev, counter)
+  # I stored modifications to result,so to be able to call input_string
+ # I cleared original data from input_string, and copied data from result into it
   input_string.clear
   i = 0
   while i < result.length
