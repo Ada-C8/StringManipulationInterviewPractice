@@ -53,8 +53,18 @@ end
 # A method to check if the input string is a palindrome.
 # Return true if the string is a palindrome. Return false otherwise.
 def palindrome_check(my_phrase)
-  puts "NOT IMPLEMENTED"
-  return true
+  length = my_phrase.length
+  whitespaces = (0...length).find_all { |j| my_phrase[j,1] == ' ' }
+  for space in whitespaces
+    my_phrase[space] = ''
+  end
+  first_half = my_phrase[0...my_phrase.length/2]
+  second_half = my_phrase[(my_phrase.length/2 + 1)..my_phrase.length]
+  if string_reverse(first_half) == second_half
+    return true
+  else
+    return false
+  end
 end
 
 # A method that updates the string by replacing consecutive repeating characters
@@ -104,8 +114,8 @@ puts "BUG: madam is a palindrome and should return true" if palindrome_check(phr
 phrase = "empty"
 puts "BUG: empty is not a palindrome and should return false" if palindrome_check(phrase) != false
 # optional challenge
-# phrase = "nurses run"
-# puts "BUG: 'nurses run' is a palindrome and should return true" if palindrome_check(phrase) != true
+phrase = "nurses run"
+puts "BUG: 'nurses run' is a palindrome and should return true" if palindrome_check(phrase) != true
 puts "Palindrome test complete."
 
 # Optional Question #5
