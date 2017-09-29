@@ -1,22 +1,60 @@
+require "pry"
 # A method to reverse a string in place.
 def string_reverse(my_string)
-  puts "NOT IMPLEMENTED"
+  length = my_string.length
+
+  (length/2).times do |i|
+    temp = my_string[i]
+    my_string[i] = my_string[(length - 1) - i]
+    my_string[(length - 1) - i] = temp
+  end
+  return my_string
 end
 
 # A method to reverse each word in a sentence, in place.
 def reverse_words(my_words)
-  puts "NOT IMPLEMENTED"
+  spaces = [-1]
+
+  my_words.length.times do |i|
+    if my_words[i] == " "
+      spaces << i
+    end
+  end
+  spaces << my_words.length
+
+  (spaces.length - 1).times do |n|
+    word_start = spaces[n] + 1
+    word_end = spaces[n+1]
+    next if word_start == word_end
+    reverse_word = string_reverse(my_words[word_start...word_end])
+    my_words[word_start...word_end] = reverse_word
+    # binding.pry
+  end
+
+  return my_words
 end
+
 
 # A method to reverse the words in a sentence, in place.
 def reverse_sentence(my_sentence)
-  puts "NOT IMPLEMENTED"
+  string_reverse(my_sentence)
+  reverse_words(my_sentence)
+
 end
 
 # A method to check if the input string is a palindrome.
 # Return true if the string is a palindrome. Return false otherwise.
 def palindrome_check(my_phrase)
-  puts "NOT IMPLEMENTED"
+  length = my_phrase.length
+
+  (length/2).times do |i|
+    temp = my_phrase[i]
+    my_phrase[i] = my_phrase[(length - 1) - i]
+    if temp != my_phrase[i]
+      return false
+    end
+    my_phrase[(length - 1) - i] = temp
+  end
   return true
 end
 
