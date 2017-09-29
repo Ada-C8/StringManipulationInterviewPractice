@@ -1,13 +1,16 @@
 # A method to reverse a string in place.
+# NOTE: Space complexity is O(1) because the size of n does not affect teh amount of memory used: the same variables (i, j, and temp) are created for any value of n.
+#NOTE: The time complexity is O(1/2 n), or O(n). The while loop will run n/2 times (which is when i and i will be eqaul).
 def string_reverse(my_string)
   length = my_string.length
-
+#String of length 1 is already reversed
   if length < 1
     return my_string
   end # if
 
   i = 0
   j = length - 1
+  # iterate through the string, swapping elements till the string is reversed
   while i < j
     temp = my_string[i]
     my_string[i] = my_string[j]
@@ -21,6 +24,9 @@ end # string_reverse
 # A method to reverse each word in a sentence, in place.
 # need to only reverse words
 # Hint: Check if creating a helper method that reverses a subset of the string given starting index and ending index as parameters helps.
+
+ # NOTE: The time complexity of the loops in the reverse_words method are: O(n), O(fraction of n), O(fraction of n), nad O(fraction of n). So, this methods time complexity is O(n).
+# NOTE: the space complexity is O(1) because the same amount of memory is used no matter what the value of n is.
 def reverse_words(my_words)
   string_length = my_words.length
 
@@ -30,16 +36,19 @@ def reverse_words(my_words)
   k = 0
   i = 0
 
+#iterate through the whole string
   while i < (string_length - 1)
     #find a white space or the end of the word
     until my_words[i] =~ /^\s*$/ || i > string_length - 1
+      # set last_index to i so you know where the word to reverse ends
       last_index = i
+      puts "last_index = #{last_index}"
       i += 1
     end # until
     # set the index of the start and end of the word to reverse within the sentence
     j = first_index
     k = last_index
-    # reverse the word
+    # reverse the word (only the word, no white space included)
     while j < k
       temp = my_words[j]
       my_words[j] = my_words[k]
@@ -47,11 +56,10 @@ def reverse_words(my_words)
       j += 1
       k -= 1
     end # inner while
-    # move forward in string to end of string or end of white space after reversed word
+    # move forward in string to end of string or end of white space after reversed word. i will now be equal to the start of the next word or the end of the string.
     while my_words[i] == ' ' && i < (string_length - 1)
       i += 1
     end # while
-
     #set first_index to the start of the next word to be reversed, or the end of the string
     first_index = i
   end # outer while
@@ -60,6 +68,8 @@ end # reverse_words
 
 
 # A method to reverse the words in a sentence, in place.
+# NOTE: the space complexity is O(1) because as n increases the amount of memory used stays constant.
+# NOTE: The time complexity of each method called is O(n). So, the time complexity of the reverse_sentence method is O(n) * O(n), or O(n^2).
 def reverse_sentence(my_sentence)
   # NOTE: simply using the two previous methods will reverse the order of the words in a sentence!
   string_reverse(my_sentence)
@@ -129,12 +139,16 @@ end # reverse_sentence
 
 # A method to check if the input string is a palindrome.
 # Return true if the string is a palindrome. Return false otherwise.
+# NOTE: The time complexity is O(n/2), or O(n). This is because the loop will run till i == j, which means the loop will run n/2 times.
+# NOTE: The space complexity is O(1) because as n increases the amount of memory used stays constant.
 def palindrome_check(my_phrase)
   length = my_phrase.length
   my_phrase = my_phrase.downcase
   i = 0
   j = length - 1
 
+# i == j is at the middle of the word
+# move one character in on either side until you reach the center of the word, checking that each consecutive pair of characters at [i] and [j] are the same.
   until i == j
     if my_phrase[i] != my_phrase[j]
       return false
@@ -148,34 +162,40 @@ end
 # A method that updates the string by replacing consecutive repeating characters
 # with a number representing the frequency. The replacement is done only if the
 # string length will get reduced by the process.
+# NOTE: The time complexity of the encode_repeating method is O(n). There are internal loops that have a time complexity of O(some fraction of n), but since we drop constants the overall time complexity can be simplified to O(n).
+# NOTE: The space complexity of the encode_repeating method is O(1) because the same number of integer or one character string variables will be created no matter how large n gets.
 def encode_repeating(my_string)
   # TODO: make it work when there are multiple reapeated letter sections in a row (works for aaaaxbbbb but not aaabbb. Also doesn't work for aaahvbbbb). Why is this????
   i = 0
   starting_index = 0
 
+# iterate though the whole string
   while i < my_string.length
     counter = 0
+    # element is the character to check consecutive characters againts
     element = my_string[i]
+    # add 1 to counter until the next character is the string does not equal element or you get to the end of the string
     until my_string[i] != element || i > my_string.length - 1
       if my_string[i + 1] == element
         counter += 1
       end
       i += 1
     end # until
-    # puts "counter is #{counter}"
+     # Add the number of repeating characters to the string (at the index of the last consecutive repeating character) and then deleate all but one of the consecutivly repeated characters.
     if counter > 1
+      #The index to add the number of repeated characters at
       index = starting_index + counter
-      # puts "index is #{index}"
+      #Change [index] to the number of repeated characters
       my_string[index] = (counter + 1).to_s
+      #remove all but the first repeated character from the string
       removed = (my_string.slice!((index - (counter - 1))..(index - 1)).length)
+      # reset i to the index after the number (number = (counter + 1).to_s)
       i = (i - removed)
     end
 
-    i += 1
+    i +=
+    # reset starting_index to i so that you can replace the correct character with a number in the next iteration of the loop.
     starting_index = i
-    # puts "starting_index is #{starting_index}"
-    # puts "i is #{i}"
-    # puts "Puts my_string is #{my_string}"
   end # outer while
   puts my_string
 end # encode_repeating
