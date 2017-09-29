@@ -59,12 +59,12 @@ def palindrome_check(my_phrase)
     my_phrase[space] = ''
   end
   first_half = my_phrase[0...my_phrase.length/2]
-  second_half = my_phrase[(my_phrase.length/2 + 1)..my_phrase.length]
-  if string_reverse(first_half) == second_half
-    return true
+  if my_phrase.length % 2 == 0
+    second_half = my_phrase[(my_phrase.length/2)..my_phrase.length]
   else
-    return false
+    second_half = my_phrase[(my_phrase.length/2 + 1)..my_phrase.length]
   end
+  string_reverse(first_half) == second_half ? true : false
 end
 
 # A method that updates the string by replacing consecutive repeating characters
