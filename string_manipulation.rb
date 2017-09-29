@@ -61,21 +61,23 @@ end
 # with a number representing the frequncy. The replacement is done only if the
 # string length will get reduced by the process.
 def encode_repeating(my_string)
-  i = 0
-  min = 0
-  max = 0
-  temp = ""
-  while i < my_string.length
-    until (my_string[i] !=my_string[i+1])
-      i += 1
-    end
-  max = i + 1
-  temp << my_string[min]
-  temp << "#{max - min}"
-  i += 1
-  min = i
-  end
-  return temp
+  puts "NOT IMPLEMENTED"
+  # i = 0
+  # min = 0
+  # max = 0
+  # temp = ""
+  # while i < my_string.length
+  #   until (my_string[i] !=my_string[i+1])
+  #     i += 1
+  #   end
+  # max = i + 1
+  # temp << my_string[min]
+  # temp << "#{max - min}"
+  # i += 1
+  # min = i
+  # end
+  # my_string = temp
+  # return my_string
 end
 
 ### ---- END OF METHODS
