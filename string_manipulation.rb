@@ -47,6 +47,8 @@ end
 # A method to check if the input string is a palindrome.
 # Return true if the string is a palindrome. Return false otherwise.
 def palindrome_check(my_phrase)
+
+  #using string_reverse method
   # input = my_phrase.dup
   # string_reverse(my_phrase)
   # if my_phrase == input
@@ -54,6 +56,7 @@ def palindrome_check(my_phrase)
   # else
   #   return false
   # end
+
   i = 0
   j = my_phrase.length - 1
   while i < j
