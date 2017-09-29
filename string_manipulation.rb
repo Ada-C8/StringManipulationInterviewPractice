@@ -65,7 +65,10 @@ def reverse_sentence(my_sentence)
   # end
   #
   # return my_sentence
-  
+  string_reverse(my_sentence)
+  reverse_words(my_sentence)
+  return my_sentence
+
 
 end
 
