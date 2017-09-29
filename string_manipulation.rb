@@ -10,6 +10,7 @@ def string_reverse(my_string)
     i += 1
     j -=1
   end
+ return  my_string
 end
 
 # A method to reverse each word in a sentence, in place.
@@ -65,18 +66,20 @@ def reverse_sentence(my_sentence)
   # end
   #
   # return my_sentence
-  string_reverse(my_sentence)
-  reverse_words(my_sentence)
-  return my_sentence
-
-
+  # string_reverse(my_sentence)
+  reverse_words(string_reverse(my_sentence))
+  # return my_sentence
 end
 
 # A method to check if the input string is a palindrome.
 # Return true if the string is a palindrome. Return false otherwise.
 def palindrome_check(my_phrase)
-  puts "NOT IMPLEMENTED"
-  return true
+  # puts string_reverse(my_phrase)
+  if my_phrase.dup == string_reverse(my_phrase)
+    return true
+  else
+    return false
+  end
 end
 
 # A method that updates the string by replacing consecutive repeating characters
