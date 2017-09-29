@@ -6,13 +6,13 @@ What is the time and space complexity for each method you implemented? Provide j
 
 |  Question 	|  Answer 	|
 |---	|---	|
-|  What is the time complexity of the string_reverse method? Provide justification.	|   	|
-|  What is the space complexity of the string_reverse method? Provide justification.	|   	|
-|  What is the time complexity of the reverse_words method? Provide justification.	|   	|
-|  What is the space complexity of the reverse_words method? Provide justification.	|   	|
-|  What is the time complexity of the reverse_sentence method? Provide justification.	|   	|
-|  What is the space complexity of the reverse_sentence method? Provide justification.	|   	|
-|  What is the time complexity of the palindrome_check method? Provide justification.	|   	|
-|  What is the space complexity of the palindrome_check method? Provide justification.	|   	|
+|  What is the time complexity of the string_reverse method? Provide justification.	| Linear.  Each character in the string has to be used once. |
+|  What is the space complexity of the string_reverse method? Provide justification.	| Constant. Only two variables are used regardless of the length of the string.  	|
+|  What is the time complexity of the reverse_words method? Provide justification.	| Linear, each character must be looked at once. |
+|  What is the space complexity of the reverse_words method? Provide justification.	| Constant, only three variables are used regardless of length of the string. 	|
+|  What is the time complexity of the reverse_sentence method? Provide justification.	| Linear. While each method that is used inside is linear, the two are added together which is still linear.  	|
+|  What is the space complexity of the reverse_sentence method? Provide justification.	| Constant, 3 variables are used total regardless of string length. |
+|  What is the time complexity of the palindrome_check method? Provide justification.	| Linear, each character in the string is looked at once.  	|
+|  What is the space complexity of the palindrome_check method? Provide justification.	|  Constant. Only 2 variables are used regardless of length.	|
 |  What is the time complexity of the encode_repeating method? Provide justification.	|   	|
 |  What is the space complexity of the encode_repeating method? Provide justification.	|   	|

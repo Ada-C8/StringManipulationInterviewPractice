@@ -53,7 +53,6 @@ def palindrome_check(my_phrase)
       i += 1
     end
     while my_phrase[j] == " "
-
       j -= 1
     end
     if my_phrase[i] != my_phrase[j]
