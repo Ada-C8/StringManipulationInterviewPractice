@@ -1,11 +1,16 @@
 require "pry"
 # A method to reverse a string in place.
-def string_reverse(my_string)
+def string_reverse(my_string, palindrome: false)
   length = my_string.length
 
   (length/2).times do |i|
     temp = my_string[i]
     my_string[i] = my_string[(length - 1) - i]
+    if palindrome == true
+      if temp != my_string[i]
+        return false
+      end
+    end
     my_string[(length - 1) - i] = temp
   end
   return my_string
@@ -25,10 +30,8 @@ def reverse_words(my_words)
   (spaces.length - 1).times do |n|
     word_start = spaces[n] + 1
     word_end = spaces[n+1]
-    next if word_start == word_end
-    reverse_word = string_reverse(my_words[word_start...word_end])
-    my_words[word_start...word_end] = reverse_word
-    # binding.pry
+    my_words[word_start...word_end] = string_reverse(my_words[word_start...word_end])
+
   end
 
   return my_words
@@ -45,17 +48,7 @@ end
 # A method to check if the input string is a palindrome.
 # Return true if the string is a palindrome. Return false otherwise.
 def palindrome_check(my_phrase)
-  length = my_phrase.length
-
-  (length/2).times do |i|
-    temp = my_phrase[i]
-    my_phrase[i] = my_phrase[(length - 1) - i]
-    if temp != my_phrase[i]
-      return false
-    end
-    my_phrase[(length - 1) - i] = temp
-  end
-  return true
+  string_reverse(my_phrase, palindrome: true) != false
 end
 
 # A method that updates the string by replacing consecutive repeating characters
