@@ -4,15 +4,15 @@ Remember that a string is an array of characters. Algorithms that worked on rest
 
 ## Exercises
 Design and implement a method for each of the following. Do not use Ruby provided functionality for `.reverse` and `.reverse!`. You may use `.length`. Share and explain the time and space complexity for each method.
-1. Design and implement a method to reverse a string in place. 
+1. Design and implement a method to reverse a string in place.
    - e.g. original string = "Lovelace"
    - reversed string = "ecalevoL"
-2. Design and implement a method to reverse each word in a sentence, in place. 
-   - e.g. original = "I can be an&nbsp;&nbsp;&nbsp;engineer"
-   - reversed words = "I nac eb na&nbsp;&nbsp;&nbsp;reenigne" (Note how the count of white spaces gets preserved)
+2. Design and implement a method to reverse each word in a sentence, in place.
+   - e.g. original = "I can be an ; ; ;engineer"
+   - reversed words = "I nac eb na ; ; ;reenigne" (Note how the count of white spaces gets preserved)
 3. Design and implement a method to reverse the words in a sentence, in place.
-   - e.g. original = "Yoda&nbsp;&nbsp;&nbsp;is&nbsp;&nbsp;&nbsp;&nbsp;awesome"
-   - reversed sentence = "awesome&nbsp;&nbsp;&nbsp;&nbsp;is&nbsp;&nbsp;&nbsp;Yoda" (Note how the count of white spaces gets preserved)
+   - e.g. original = "Yoda ; ; ;is; ; ; ;awesome"
+   - reversed sentence = "awesome ; ; ; ;is ; ; ;Yoda" (Note how the count of white spaces gets preserved)
 4. Design and implement a method to check if the input string is a palindrome. Return true if the string is a palindrome. Return false otherwise.
    - **Note**: Palindrome is a word, phrase or sentence that reads the same backwards as forwards. e.g. "madam"
    - [**Optional challenge**] Make the method ignore white spaces. e.g. Make it so that the method will return true for "nurses run"
