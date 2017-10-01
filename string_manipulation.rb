@@ -33,35 +33,61 @@ end
 def reverse_words(my_words)
   i = 0
   j = 0
+  k = 0
 
   # increment j until it equals an empty space or until it gets to the end of the last word in the string
   while  j < my_words.length
-    while ( my_words[j] != " " ) || (j != my_words.length - 1)
-      j += 1
-    end
-    # when j hits a space,then go back one space so j becomes the end of the word
-    j -= 1
-    # then reverse word using method above
-    while i < j
-      last = my_words[j]
-      first = my_words[i]
+    if ( my_words[j] != " " ) || (j == my_words.length - 1)
+      puts j
+      if (j < my_words.length - 1)
+        k = j - 1
+        puts k
+      else
+        k = j
+        puts k
+      end
 
-      my_words[i] = last
-      my_words[j] = first
+      while i < k
 
-      i += 1
-      j -= 1
+        temp = my_words[i]
+        my_words[i] = my_words[k]
+        my_words[k] =temp
+
+        i += 1
+        k -= 1
+      end
+
+      i = j + 1
     end
-    # re-assign j's position to i, so both the end and start points are in the same position
-    i = j
-    # move i and j are the same time
-    while i == " "
-      i += 1
-      j += 1
-    end
+    j += 1
   end
-  return my_words
 end
+
+
+#     end
+#     # when j hits a space,then go back one space so j becomes the end of the word
+#     j -= 1
+#     # then reverse word using method above
+#     while i < j
+#       last = my_words[j]
+#       first = my_words[i]
+#
+#       my_words[i] = last
+#       my_words[j] = first
+#
+#       i += 1
+#       j -= 1
+#     end
+#     # re-assign j's position to i, so both the end and start points are in the same position
+#     i = j
+#     # move i and j at the same time
+#     while i == " "
+#       i += 1
+#       j += 1
+#     end
+#   end
+#   return my_words
+# end
 
 # A method to reverse the words in a sentence, in place.
 def reverse_sentence(my_sentence)
@@ -105,26 +131,26 @@ else
   puts "BUG! The reversed words should be '#{reversed_words}' and not '#{my_words}'"
 end
 
-puts "Test 3: reversed sentence"
-sentence = "Yoda  is   awesome"
-puts "Original: #{sentence}"
-reversed_sentence = "awesome   is  Yoda"
-reverse_sentence(sentence)
-if sentence == reversed_sentence
-  puts "Sentence reversed correctly. Reversed sentence: '#{reversed_sentence}'"
-else
-  puts "BUG! The reversed sentence should be '#{reversed_sentence}' and not '#{sentence}'"
-end
-
-puts "Test 4: Palindrome check"
-phrase = "madam"
-puts "BUG: madam is a palindrome and should return true" if palindrome_check(phrase) != true
-phrase = "empty"
-puts "BUG: empty is not a palindrome and should return false" if palindrome_check(phrase) != false
-# optional challenge
-# phrase = "nurses run"
-# puts "BUG: 'nurses run' is a palindrome and should return true" if palindrome_check(phrase) != true
-puts "Palindrome test complete."
+# puts "Test 3: reversed sentence"
+# sentence = "Yoda  is   awesome"
+# puts "Original: #{sentence}"
+# reversed_sentence = "awesome   is  Yoda"
+# reverse_sentence(sentence)
+# if sentence == reversed_sentence
+#   puts "Sentence reversed correctly. Reversed sentence: '#{reversed_sentence}'"
+# else
+#   puts "BUG! The reversed sentence should be '#{reversed_sentence}' and not '#{sentence}'"
+# end
+#
+# puts "Test 4: Palindrome check"
+# phrase = "madam"
+# puts "BUG: madam is a palindrome and should return true" if palindrome_check(phrase) != true
+# phrase = "empty"
+# puts "BUG: empty is not a palindrome and should return false" if palindrome_check(phrase) != false
+# # optional challenge
+# # phrase = "nurses run"
+# # puts "BUG: 'nurses run' is a palindrome and should return true" if palindrome_check(phrase) != true
+# puts "Palindrome test complete."
 
 # Optional Question #5
 # puts "Test 5: Encode test"
