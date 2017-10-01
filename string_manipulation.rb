@@ -48,14 +48,7 @@ def reverse_words(my_words)
   return my_words
 end
 
-# def word_length(word, i, j)
-#
-#   until word[j] == " " || word[j] == nil
-#     j += 1
-#   end
-#
-#   return j
-# end
+
 
 # A method to reverse the words in a sentence, in place.
 def reverse_sentence(my_sentence)
@@ -66,112 +59,7 @@ string_reverse(my_sentence)
 reverse_words(my_sentence)
 
 end
-# i = 0
-# j = 0
-# hold = nil
-# r_low = 0
-# r_high = 0
-#
-# until j >= my_sentence.length
-#  word_length = word_length(my_sentence, i, j)
-#  word_length.times do
-#   until i >= j
-#     hold = my_sentence[i]
-#     r_low = my_sentence.length-j
-#     my_sentence[i] = my_sentence[r_low]
-#     my_sentence[r_low] = hold
-#     i += 1
-#   end
-#  end
-#  i += 1
-#  j += 1
-# end
-#
-# return my_sentence
 
-##White space messed up
-#   l_low_index = 0
-#   l_high_index = 0
-#
-#   r_low_index = my_sentence.length-1
-#   r_high_index = my_sentence.length-1
-#   hold = nil
-#
-# while l_high_index < r_low_index
-#   until my_sentence[l_high_index] == " "
-#     l_high_index += 1
-#   end
-#   until my_sentence[r_low_index] == " "
-#     r_low_index -= 1
-#   end
-#
-#   hold = my_sentence[r_low_index+1..r_high_index]
-#   my_sentence[r_low_index+1..r_high_index] = my_sentence[l_low_index..l_high_index-1]
-#
-#   my_sentence[l_low_index..l_high_index-1] = hold
-#
-#   l_high_index += 1
-#   l_low_index = l_high_index
-#   r_low_index -= 1
-#   r_high_index = l_low_index
-#
-#
-# end
-
-  ## DOESN"T WORK
-  # left_word_low_index = 0
-  # left_word_high_index = 0
-  #
-  # right_word_low_index = my_sentence.length-1
-  # right_word_high_index = my_sentence.length-1
-  #
-  # until my_sentence[left_word_high_index] == " " || nil
-  #   left_word_high_index += 1
-  # end
-  #
-  # until my_sentence[right_word_low_index] == " "
-  #   right_word_low_index -= 1
-  # end
-  #
-  # left_word_high_index -= 1
-  # right_word_low_index += 1
-
-
-
-## DOESN"T WORK
-  # next_word_index = 0
-  # i = 0
-  # j = 0 #will equal the length of current word-1
-  # next_word_index = 0
-  # hold = nil
-  #
-  # until next_word_index >= my_sentence.length
-  #
-  #   until my_sentence[j] == " " || my_sentence[j] == nil
-  #     j += 1
-  #   end
-  #
-  #   next_word_index = (j + 1)
-  #   j -= 1
-  #
-  #   hold = my_sentence[i..j]
-  #   right_low_index = (my_sentence.length-1)-hold.length
-  #   right_high_index = my_sentence.length
-  #
-  #   my_sentence[i..j] = my_sentence[right_low_index...right_high_index]
-  #
-  #   my_sentence[right_low_index...right_high_index] = hold
-  #
-  #   j = next_word_index
-  #   i = next_word_index
-  #
-  #   right_high_index = right_low_index - 1
-  #   right_low_index = right_high_index - hold.length
-  #   # my_sentence[i..j] = my_sentence[((my_sentence.length-1)-hold.length)...my_sentence.length]
-  #
-  #
-  # end
-# end
 
 # A method to check if the input string is a palindrome.
 # Return true if the string is a palindrome. Return false otherwise.
