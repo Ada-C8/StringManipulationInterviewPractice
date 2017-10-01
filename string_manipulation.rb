@@ -1,23 +1,70 @@
+require 'awesome_print'
 # A method to reverse a string in place.
 def string_reverse(my_string)
-  puts "NOT IMPLEMENTED"
+  length = my_string.length
+  if length <= 1
+    return my_string
+  else
+    i = 0
+    j = length - 1
+    while i < j
+      original = my_string[i]
+      my_string[i] = my_string[j]
+      my_string[j] = original
+      i += 1
+      j -= 1
+    end
+  end
+  return my_string
 end
 
 # A method to reverse each word in a sentence, in place.
 def reverse_words(my_words)
-  puts "NOT IMPLEMENTED"
+  length = my_words.length
+  if length <= 1
+    return my_words
+  else
+    whitespaces = (0...length).find_all { |j| my_words[j,1] == ' ' }
+    i = 0
+    until i == whitespaces.length
+      min = (whitespaces[i-1]) + 1
+      max = whitespaces[i]
+      if i == 0 && max > 1
+        min = 0
+      elsif min > max
+        min = max
+      end
+      reverse = string_reverse(my_words[min...max])
+      my_words[min...max] = reverse
+      i += 1
+    end
+    last = (whitespaces.last) + 1
+    my_words[last...my_words.length] = string_reverse(my_words[last...my_words.length])
+  end
+  return my_words
 end
 
 # A method to reverse the words in a sentence, in place.
 def reverse_sentence(my_sentence)
-  puts "NOT IMPLEMENTED"
+  string_reverse(my_sentence)
+  reverse_words(my_sentence)
 end
 
 # A method to check if the input string is a palindrome.
 # Return true if the string is a palindrome. Return false otherwise.
 def palindrome_check(my_phrase)
-  puts "NOT IMPLEMENTED"
-  return true
+  length = my_phrase.length
+  whitespaces = (0...length).find_all { |j| my_phrase[j,1] == ' ' }
+  for space in whitespaces
+    my_phrase[space] = ''
+  end
+  first_half = my_phrase[0...my_phrase.length/2]
+  if my_phrase.length % 2 == 0
+    second_half = my_phrase[(my_phrase.length/2)..my_phrase.length]
+  else
+    second_half = my_phrase[(my_phrase.length/2 + 1)..my_phrase.length]
+  end
+  string_reverse(first_half) == second_half ? true : false
 end
 
 # A method that updates the string by replacing consecutive repeating characters
@@ -67,8 +114,8 @@ puts "BUG: madam is a palindrome and should return true" if palindrome_check(phr
 phrase = "empty"
 puts "BUG: empty is not a palindrome and should return false" if palindrome_check(phrase) != false
 # optional challenge
-# phrase = "nurses run"
-# puts "BUG: 'nurses run' is a palindrome and should return true" if palindrome_check(phrase) != true
+phrase = "nurses run"
+puts "BUG: 'nurses run' is a palindrome and should return true" if palindrome_check(phrase) != true
 puts "Palindrome test complete."
 
 # Optional Question #5
