@@ -1,11 +1,66 @@
 # A method to reverse a string in place.
 def string_reverse(my_string)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  j = my_string.length - 1
+
+  while i < j
+    last = my_string[j]
+    first = my_string[i]
+
+    my_string[i] = last
+    my_string[j] = first
+
+    i += 1
+    j -= 1
+  end
+  return my_string
 end
+
+# def string_reverse(my_string)
+#   i = my_string.length - 1
+#   reversed_str = ""
+#
+#   while i > -1
+#     reversed_str << my_string[i]
+#     puts my_string[i]
+#     i -= 1
+#   end
+#   my_string = reversed_str
+#   return my_string
+# end
 
 # A method to reverse each word in a sentence, in place.
 def reverse_words(my_words)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  j = 0
+
+  # increment j until it equals an empty space or until it gets to the end of the last word in the string
+  while  j < my_words.length
+    while ( my_words[j] != " " ) || (j != my_words.length - 1)
+      j += 1
+    end
+    # when j hits a space,then go back one space so j becomes the end of the word
+    j -= 1
+    # then reverse word using method above
+    while i < j
+      last = my_words[j]
+      first = my_words[i]
+
+      my_words[i] = last
+      my_words[j] = first
+
+      i += 1
+      j -= 1
+    end
+    # re-assign j's position to i, so both the end and start points are in the same position
+    i = j
+    # move i and j are the same time
+    while i == " "
+      i += 1
+      j += 1
+    end
+  end
+  return my_words
 end
 
 # A method to reverse the words in a sentence, in place.
