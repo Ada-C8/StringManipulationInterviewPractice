@@ -1,5 +1,3 @@
-require 'pry'
-
 # A method to reverse a string in place.
 def string_reverse(my_string)
   n = (my_string.length)/2
@@ -17,7 +15,7 @@ def reverse_words(my_words)
   phrase_length = my_words.length
   i = 0
   while i < phrase_length
-    if my_words[i] != " " #start char count
+    if my_words[i] != " "
       word_length = 1
       until my_words[i + word_length] == " " || my_words[i + word_length] == nil
         word_length += 1
@@ -43,6 +41,7 @@ end
 # A method to check if the input string is a palindrome.
 # Return true if the string is a palindrome. Return false otherwise.
 def palindrome_check(my_phrase)
+  #remove spaces
   my_phrase.length.times do |i|
     if my_phrase[i] == " "
       my_phrase[i] = ""
@@ -70,10 +69,6 @@ end
 # with a number representing the frequency. The replacement is done only if the
 # string length will get reduced by the process.
 def encode_repeating(my_string)
-  #iterate through the characters
-  #if next char equals current AND char after that equals current, start counting
-  #replace the 2nd instance of char with count
-  #shuffle remaining chars up by the number of chars being deleted
   i = 0
   while i < my_string.length
     if my_string[i] == my_string[i + 1] && my_string[i] == my_string[i + 2]
@@ -82,10 +77,10 @@ def encode_repeating(my_string)
         count += 1
       end
       my_string[i + 1] = count.to_s
-      # my_string.slice!((i + 2)..(i + count))
-
+      my_string.slice!((i + 2)..(i + count - 1))
+    else
+      i += 1
     end
-    i += 1
   end
   return my_string
 end
