@@ -1,14 +1,53 @@
+require 'pry'
+
 # A method to reverse a string in place.
+# time complexity =  O(n)
+# # reasoning: it O(n *1/2) but we drop the constant so it reduces to O(n).
+# space complexity = O(1)
+# # reasoning: constant, the number of variables and what is stored is not dependant on the size of the string passed into the method.
 def string_reverse(my_string)
-  puts "NOT IMPLEMENTED"
+  length = my_string.length
+  i = 0
+  j = length - 1
+
+  while i < j
+    temp = my_string[i]
+    my_string[i] = my_string[j]
+    my_string[j] = temp
+    i += 1
+    j -= 1
+  end
 end
 
-# A method to reverse each word in a sentence, in place.
 def reverse_words(my_words)
-  puts "NOT IMPLEMENTED"
+  index = 0
+  i = 0
+
+  while index < my_words.length
+    until my_words[index] == " " || index == my_words.length
+      index +=1
+    end
+
+    j = index - 1
+
+    while i < j do
+      temp = my_words[i]
+      my_words[i] = my_words[j]
+      my_words[j] = temp
+      i += 1
+      j -= 1
+    end
+
+    index += 1
+    i = index
+  end
+
+  return my_words
 end
 
 # A method to reverse the words in a sentence, in place.
+# sentence = "Yoda  is   awesome"
+# reversed_sentence = "awesome   is  Yoda"
 def reverse_sentence(my_sentence)
   puts "NOT IMPLEMENTED"
 end
@@ -16,7 +55,18 @@ end
 # A method to check if the input string is a palindrome.
 # Return true if the string is a palindrome. Return false otherwise.
 def palindrome_check(my_phrase)
-  puts "NOT IMPLEMENTED"
+  length = my_phrase.length
+  i = 0
+  j = length - 1
+
+  while i < j
+    if my_phrase[i] == my_phrase[j]
+      i += 1
+      j -= 1
+    else
+      return false
+    end
+  end
   return true
 end
 
