@@ -1,6 +1,6 @@
 # A method to reverse a string in place.
 def string_reverse(my_string)
-  #first, check if string has more than one letter
+
   return my_string[0] if my_string.length <= 1
   i = 0
   j = my_string.length - 1
@@ -18,7 +18,6 @@ end
 
 # A method to reverse each word in a sentence, in place.
 def reverse_words(my_words)
-  #check for more than one word, else, return the one word reversed
   first = 0
   while first < my_words.length
     first += 1 while my_words[first] == " "
@@ -46,7 +45,6 @@ end
 # A method to check if the input string is a palindrome.
 # Return true if the string is a palindrome. Return false otherwise.
 def palindrome_check(my_phrase)
-  #if word is one letter long?
   i = 0
   j = my_phrase.length - 1
   while i < j
