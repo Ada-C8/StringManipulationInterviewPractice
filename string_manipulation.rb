@@ -4,18 +4,33 @@ def string_reverse(my_string)
   i = 0
 
   if length >= 2
-  (length / 2).times do
-    temp = my_string[i]
-    my_string[i] = my_string[length - 1]
-    my_string[length - 1] = temp
-    i += 1
-    length -= 1
+    (length / 2).times do
+      temp = my_string[i]
+      my_string[i] = my_string[length - 1]
+      my_string[length - 1] = temp
+      i += 1
+      length -= 1
     end
   end
-  return my_string
 end
 
 # A method to reverse each word in a sentence, in place.
+
+def reverse_by_index(input_string, beg, fin)
+  length = (fin - beg) + 1
+
+  if length >= 2
+    (length / 2).times do
+      temp = input_string[beg]
+      input_string[beg] = input_string[fin]
+      input_string[fin] = temp
+      beg += 1
+      fin -=1
+    end
+  end
+  return input_string
+end
+
 def reverse_words(my_words)
   length = my_words.length
 
@@ -31,7 +46,7 @@ def reverse_words(my_words)
         word_end = i
       end
 
-      my_words[word_start..word_end] = string_reverse(my_words[word_start..word_end])
+      reverse_by_index(my_words, word_start, word_end)
       word_start = i + 1
       word_end = i + 1
     end
@@ -42,10 +57,8 @@ end
 
 # A method to reverse the words in a sentence, in place.
 def reverse_sentence(my_sentence)
-  my_sentence = string_reverse(my_sentence)
-  my_sentence = reverse_words(my_sentence)
-
-  return my_sentence
+  string_reverse(my_sentence)
+  reverse_words(my_sentence)
 end
 
 # A method to check if the input string is a palindrome.
@@ -56,15 +69,12 @@ def palindrome_check(my_phrase)
     fin = my_phrase.length - 1
 
     ((my_phrase.length) / 2).times do
-
       while my_phrase[beg] == " "
         beg += 1
       end
-
       while my_phrase[fin] == " "
         fin -= 1
       end
-
       if my_phrase[beg] != my_phrase[fin]
         return false
       end
@@ -80,45 +90,42 @@ end
 def encode_repeating(my_string)
   counter = 1
   start = 0
-  finish = 0
   i = 0
 
   until i > my_string.length do
 
     if i + 1 == my_string.length && counter >= 2
-      my_string[start] = my_string[start] + counter.to_s
+      my_string[start] = my_string[i]
+      my_string[start + 1] = counter.to_s
+
+      times = (my_string.length) - (start + 2)
+      (times).times do
+        my_string.slice!(start + 2)
+      end
+      start += 2
       i += 1
-      break
-    elsif (my_string[i] != my_string[i + 1]) && counter <= 2
-      start = i + 1
-      finish = i + 1
       counter = 1
+      break
+
+    elsif (my_string[i] != my_string[i + 1]) && counter <= 2
+      counter.times do
+        my_string[start] = my_string[i]
+        start += 1
+      end
       i += 1
+      counter = 1
       next
+
     elsif
       (my_string[i] != my_string[i + 1]) && counter >= 3
-      my_string[start] = my_string[start] + counter.to_s
-      start = i += 1
+      my_string[start] = my_string[i]
+      my_string[start + 1] = counter.to_s
+      start += 2
+      i += 1
       counter = 1
     else
       counter += 1
-      finish += 1
       i += 1
-    end
-  end
-
-  if /[0-9]/.match(my_string)
-    length = my_string.length
-    i = 0
-    until i > length do
-      if my_string[i].to_i > 0
-        num = my_string[i].to_i
-        my_string.slice!((i + 1), (num - 1))
-        i += 1
-        length = my_string.length
-      else
-        i += 1
-      end
     end
   end
 
