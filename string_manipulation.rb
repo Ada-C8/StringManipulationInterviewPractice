@@ -1,22 +1,93 @@
 # A method to reverse a string in place.
 def string_reverse(my_string)
-  puts "NOT IMPLEMENTED"
+  if my_string.size < 2
+    return my_string
+  else
+    first_char = 0
+    last_char = (my_string.length - 1)
+
+    while first_char < last_char
+      #set temp to first character value
+      temp = my_string[first_char]
+      #set first character to last character value
+      my_string[first_char] = my_string[last_char]
+      #set last character to temp value, which has the first character
+      my_string[last_char] = temp
+
+      first_char += 1
+      last_char -= 1
+    end
+
+    return my_string
+  end
+
 end
 
 # A method to reverse each word in a sentence, in place.
 def reverse_words(my_words)
-  puts "NOT IMPLEMENTED"
+  if my_words.size < 2
+    return my_words
+  else
+    final_word_idx = my_words.length - 1
+    word_start_idx = 0
+    word_end_idx = 0
+
+    while word_start_idx < final_word_idx
+      while my_words[word_start_idx] == " " #increment word_start_idx until it finds its first non-empty character
+        word_start_idx += 1
+      end
+
+      word_end_idx = word_start_idx
+
+      while my_words[word_end_idx + 1] != " " && word_end_idx != final_word_idx #increment word_end_idx until it finds its first non-empty character
+        word_end_idx += 1
+      end
+
+      swap_start_idx = word_start_idx
+      swap_end_idx = word_end_idx
+
+      while swap_start_idx < swap_end_idx
+        temp = my_words[swap_start_idx]
+        my_words[swap_start_idx] = my_words[swap_end_idx]
+        my_words[swap_end_idx] = temp
+        swap_start_idx += 1
+        swap_end_idx -= 1
+      end
+
+      word_start_idx = word_end_idx + 2
+    end
+  end
 end
 
 # A method to reverse the words in a sentence, in place.
 def reverse_sentence(my_sentence)
-  puts "NOT IMPLEMENTED"
+  return reverse_words(string_reverse(my_sentence))
 end
 
 # A method to check if the input string is a palindrome.
 # Return true if the string is a palindrome. Return false otherwise.
 def palindrome_check(my_phrase)
-  puts "NOT IMPLEMENTED"
+  #assuming my_phrase's letter case is uniform
+  start_idx = 0
+  end_idx = my_phrase.length - 1
+
+  while start_idx < end_idx
+    while my_phrase[start_idx] == " "
+      start_idx += 1
+    end
+
+    while my_phrase[end_idx] == " "
+      end_idx -= 1
+    end
+
+    if my_phrase[start_idx] == my_phrase[end_idx]
+      start_idx += 1
+      end_idx -= 1
+    else
+      return false
+    end
+  end
+
   return true
 end
 
