@@ -41,14 +41,11 @@ def reverse_words(my_words)
       puts j
       if (j < my_words.length - 1)
         k = j - 1
-        puts k
       else
         k = j
-        puts k
       end
 
       while i < k
-
         temp = my_words[i]
         my_words[i] = my_words[k]
         my_words[k] =temp
@@ -56,11 +53,11 @@ def reverse_words(my_words)
         i += 1
         k -= 1
       end
-
       i = j + 1
     end
     j += 1
   end
+  return my_words
 end
 
 
@@ -97,9 +94,26 @@ end
 # A method to check if the input string is a palindrome.
 # Return true if the string is a palindrome. Return false otherwise.
 def palindrome_check(my_phrase)
-  puts "NOT IMPLEMENTED"
-  return true
+  i = 0
+  j = my_phrase.length - 1
+
+  while i < j
+    if my_phrase[i] == my_phrase[j]
+      puts my_phrase[i]
+      puts my_phrase[j]
+      i += 1
+      j -= 1
+    else
+      return false
+    end
+  end
+    if i == j
+      puts i
+      puts j
+      return true
+    end
 end
+
 
 # A method that updates the string by replacing consecutive repeating characters
 # with a number representing the frequency. The replacement is done only if the
@@ -120,16 +134,16 @@ else
   puts "BUG! The reversed string should be '#{reversed_string}' and not '#{my_string}'"
 end
 
-puts "Test 2: reversed words"
-my_words = "I can be an  engineer"
-puts "Original: #{my_words}"
-reversed_words = "I nac eb na  reenigne"
-reverse_words(my_words)
-if my_words == reversed_words
-  puts "Words reversed correctly. Reversed words: #{reversed_words}"
-else
-  puts "BUG! The reversed words should be '#{reversed_words}' and not '#{my_words}'"
-end
+# puts "Test 2: reversed words"
+# my_words = "I can be an  engineer"
+# puts "Original: #{my_words}"
+# reversed_words = "I nac eb na  reenigne"
+# reverse_words(my_words)
+# if my_words == reversed_words
+#   puts "Words reversed correctly. Reversed words: #{reversed_words}"
+# else
+#   puts "BUG! The reversed words should be '#{reversed_words}' and not '#{my_words}'"
+# end
 
 # puts "Test 3: reversed sentence"
 # sentence = "Yoda  is   awesome"
@@ -142,15 +156,15 @@ end
 #   puts "BUG! The reversed sentence should be '#{reversed_sentence}' and not '#{sentence}'"
 # end
 #
-# puts "Test 4: Palindrome check"
-# phrase = "madam"
-# puts "BUG: madam is a palindrome and should return true" if palindrome_check(phrase) != true
-# phrase = "empty"
-# puts "BUG: empty is not a palindrome and should return false" if palindrome_check(phrase) != false
-# # optional challenge
-# # phrase = "nurses run"
-# # puts "BUG: 'nurses run' is a palindrome and should return true" if palindrome_check(phrase) != true
-# puts "Palindrome test complete."
+puts "Test 4: Palindrome check"
+phrase = "madam"
+puts "BUG: madam is a palindrome and should return true" if palindrome_check(phrase) != true
+phrase = "empty"
+puts "BUG: empty is not a palindrome and should return false" if palindrome_check(phrase) != false
+# optional challenge
+# phrase = "nurses run"
+# puts "BUG: 'nurses run' is a palindrome and should return true" if palindrome_check(phrase) != true
+puts "Palindrome test complete."
 
 # Optional Question #5
 # puts "Test 5: Encode test"
