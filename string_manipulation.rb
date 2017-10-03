@@ -1,22 +1,71 @@
 # A method to reverse a string in place.
+# Time Complexity: O(n), time depends on string length
+# Space Complexity: O(1), no additional variables created
 def string_reverse(my_string)
-  puts "NOT IMPLEMENTED"
+  length = my_string.length
+  i = 0
+  x = length - 1
+  temp = 0
+  mid_length = (length / 2)
+  until i == mid_length
+    temp = my_string[i]
+    my_string[i] = my_string[x]
+    my_string[x] = temp
+    i += 1
+    x -= 1
+  end
+  return my_string
 end
 
 # A method to reverse each word in a sentence, in place.
+# Time Complexity: O(n ^ 2), each loop runs O(n) times and are nested
+# Space Complexity: O(1), No additonal variables are created
 def reverse_words(my_words)
-  puts "NOT IMPLEMENTED"
+  length = my_words.length
+  i = 0
+  start = 0
+  temp = 0
+
+  while i < length
+    until (my_words[i] == " ") || (i == my_words.length)
+      i += 1
+    end
+    finish = i
+    while start < finish - 1
+      temp = my_words[start]
+      my_words[start] = my_words[finish - 1]
+      my_words[finish - 1] = temp
+      start += 1
+      finish -= 1
+    end
+    i += 1
+    start = i
+  end
+  return my_words
 end
 
 # A method to reverse the words in a sentence, in place.
+# Time Complexity: O(n^2), reverse_words followed by string_reverse makes
+# it O(n + n^2).
+# Space Complexity: O(1), no additional variables are created
 def reverse_sentence(my_sentence)
-  puts "NOT IMPLEMENTED"
+  reverse_words(my_sentence)
+  string_reverse(my_sentence)
 end
 
 # A method to check if the input string is a palindrome.
 # Return true if the string is a palindrome. Return false otherwise.
+# Time Complexity: O(n^2), nested O(n) loops
+# Space Complexity: O(1), no new variables are created.
 def palindrome_check(my_phrase)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  while i < my_phrase.length
+    if my_phrase[i] != my_phrase[-1 - i]
+      return false
+    else
+      i += 1
+    end
+  end
   return true
 end
 
@@ -24,7 +73,7 @@ end
 # with a number representing the frequency. The replacement is done only if the
 # string length will get reduced by the process.
 def encode_repeating(my_string)
-  puts "NOT IMPLEMENTED"
+
 end
 
 ### ---- END OF METHODS
