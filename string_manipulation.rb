@@ -1,23 +1,108 @@
 # A method to reverse a string in place.
 def string_reverse(my_string)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  j = my_string.length-1
+
+  while i < j
+    temp = my_string[i]
+    my_string[i] = my_string[j]
+    my_string[j] = temp
+    i += 1
+    j -= 1
+  end
+
+  return my_string
+
 end
 
 # A method to reverse each word in a sentence, in place.
 def reverse_words(my_words)
-  puts "NOT IMPLEMENTED"
+  start_i = 0
+
+  while start_i < my_words.length
+    until my_words[start_i] != " "
+      start_i += 1
+    end
+
+    space_i = start_i
+    until my_words[space_i] == " " || space_i == my_words.length
+      space_i += 1
+    end
+
+    i = start_i
+    j = space_i - 1
+
+    while i <= j
+      temp = my_words[i]
+      my_words[i] = my_words[j]
+      my_words[j] = temp
+      i+=1
+      j-=1
+    end
+
+
+    start_i = space_i + 1
+  end
+
+  return my_words
 end
+
+
+
 
 # A method to reverse the words in a sentence, in place.
 def reverse_sentence(my_sentence)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  j = my_sentence.length-1
+
+  while i < j
+    temp = my_sentence[i]
+    my_sentence[i] = my_sentence[j]
+    my_sentence[j] = temp
+    i+=1
+    j-=1
+  end
+
+  start_i = 0
+
+  while start_i < my_sentence.length
+    space_i = start_i
+    until my_sentence[space_i] == " " || space_i == my_sentence.length
+      space_i += 1
+    end
+
+    l = space_i - 1
+    while start_i < l
+      temp = my_sentence[start_i]
+      my_sentence[start_i] = my_sentence[l]
+      my_sentence[l] = temp
+      start_i += 1
+      l-=1
+    end
+
+    start_i = space_i + 1
+  end
+
 end
+
+
+
 
 # A method to check if the input string is a palindrome.
 # Return true if the string is a palindrome. Return false otherwise.
 def palindrome_check(my_phrase)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  j = my_phrase.length-1
+
+  while i <= j
+    if my_phrase[i] != my_phrase[j]
+      return false
+    end
+    i += 1
+    j -= 1
+  end
   return true
+
 end
 
 # A method that updates the string by replacing consecutive repeating characters
