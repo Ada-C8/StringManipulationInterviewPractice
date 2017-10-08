@@ -1,7 +1,8 @@
-
+require 'pry'
 
 # A method to reverse a string in place.
 def string_reverse(my_string)
+
   i = 0
   j = my_string.length - 1
   while i < j
@@ -14,23 +15,26 @@ def string_reverse(my_string)
   return my_string
 end
 
+
 # A method to reverse each word in a sentence, in place.
 def reverse_words(my_words)
+
   i = 0
   j = 0
   k = 0
 
-  while k < my_words.length + 1
+  while k <= my_words.length
     if my_words[k] == " " || my_words[k] == nil
       j = k - 1
 
-      while i < j
-        temp = my_words[i]
-        my_words[i] = my_words[j]
-        my_words[j] = temp
-        i += 1
-        j -= 1
-      end
+      my_words[i..j] = reverse_substring(my_words[i..j])
+      # while i < j
+      #   temp = my_words[i]
+      #   my_words[i] = my_words[j]
+      #   my_words[j] = temp
+      #   i += 1
+      #   j -= 1
+      # end
       i = k + 1
     end
     k += 1
@@ -38,8 +42,26 @@ def reverse_words(my_words)
   return my_words
 end
 
+def reverse_substring(string)
+  first = 0
+  last = string.length - 1
+
+  while first < last
+    temp = string[first]
+    string[first] = string[last]
+    string[last] = temp
+    first += 1
+    last -= 1
+  end
+  return string
+end
+
+
+
 # A method to reverse the words in a sentence, in place.
 def reverse_sentence(my_sentence)
+  # string_reverse(my_sentence)
+  # reverse_words(my_sentence)
   return reverse_words(string_reverse(my_sentence))
 end
 
@@ -69,8 +91,52 @@ end
 # with a number representing the frequncy. The replacement is done only if the
 # string length will get reduced by the process.
 def encode_repeating(my_string)
-  puts "NOT IMPLEMENTED"
+  passing_index = 0
+  replacing_index = 0
+
+
+  while passing_index < my_string.length
+    replacing_index += 1
+    if my_string[passing_index] == my_string[passing_index + 1]
+      temp = my_string[passing_index]
+      n = 1
+      passing_index += 1
+      # binding.pry
+
+      while temp == my_string[passing_index]
+        n += 1
+        my_string[passing_index] = "^"
+        passing_index += 1
+      end
+      my_string[replacing_index] = n.to_s
+      replacing_index += n - 1
+    else
+      passing_index += 1
+    end
+  end
+
+  remove_char(my_string)
 end
+
+#I looked this method up after struggling on my own for a while and coming up with a method taht had a time complexity of factorial...
+def remove_char(my_string)
+  i = 0
+  count = 0
+  while i < my_string.length
+    if my_string[i] != "^"
+      my_string[count] = my_string[i]
+      count += 1
+    end
+    i += 1
+  end
+
+  i = count
+  while i < my_string.length
+    my_string[i] = " "
+    i += 1
+  end
+end
+
 
 ### ---- END OF METHODS
 puts "Test 1: reverse a string"
@@ -117,22 +183,22 @@ puts "BUG: 'nurses run' is a palindrome and should return true" if palindrome_ch
 puts "Palindrome test complete."
 
 # Optional Question #5
-# puts "Test 5: Encode test"
-# test1 = "aaabbbbbcccc"
-# encode_repeating(test1)
-# if test1 != "a3b5c4"
-#   puts "BUG! 'aaabbbbbcccc' should get encoded to 'a3b5c4', not '#{test1}'"
-# end
-#
-# test2 = "xxxyttttgeee"
-# encode_repeating(test2)
-# if test2 != "x3yt4ge3"
-#   puts "BUG! 'xxxyttttgeee' should get encoded to 'x3yt4ge3', not '#{test2}'"
-# end
-#
-# test3 = "ddbbfffgjjjj"
-# encode_repeating(test3)
-# if test3 != "ddbbf3gj4"
-#   puts "BUG! 'ddbbfffgjjjj' should get encoded to 'ddbbf3gj4', not '#{test3}'"
-# end
-# puts "Encode test complete."
+puts "Test 5: Encode test"
+test1 = "aaabbbbbcccc"
+encode_repeating(test1)
+if test1 != "a3b5c4"
+  puts "BUG! 'aaabbbbbcccc' should get encoded to 'a3b5c4', not '#{test1}'"
+end
+
+test2 = "xxxyttttgeee"
+encode_repeating(test2)
+if test2 != "x3yt4ge3"
+  puts "BUG! 'xxxyttttgeee' should get encoded to 'x3yt4ge3', not '#{test2}'"
+end
+
+test3 = "ddbbfffgjjjj"
+encode_repeating(test3)
+if test3 != "ddbbf3gj4"
+  puts "BUG! 'ddbbfffgjjjj' should get encoded to 'ddbbf3gj4', not '#{test3}'"
+end
+puts "Encode test complete."
