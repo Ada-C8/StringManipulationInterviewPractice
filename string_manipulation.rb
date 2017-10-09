@@ -1,4 +1,4 @@
-# A method to reverse a string in place.
+# A METHOD TO REVERSE A STRING IN PLACE
 # NOTE: Space complexity is O(1) because the size of n does not affect the amount of memory used: the same variables (i, j, and temp) are created for any value of n.
 #NOTE: The time complexity is O(1/2 n), or O(n). The while loop will run n/2 times (which is when i and i will be eqaul).
 def string_reverse(my_string)
@@ -24,7 +24,7 @@ end # string_reverse
 
 
 
-# A method to reverse each word in a sentence, in place.
+# A MATHOF TO REVERSE EACH WORD IN A SENTENCE, IN PLACE
 # need to only reverse words
 # Hint: Check if creating a helper method that reverses a subset of the string given starting index and ending index as parameters helps.
 
@@ -66,7 +66,7 @@ def reverse_words(my_words)
 end # reverse_words
 
 
-# A method to reverse the words in a sentence, in place.
+# A METHOD TO REVERSE THE WORDS IN A SENTENCE, IN PLACE.
 # NOTE: the space complexity is O(1) because as n increases the amount of memory used stays constant.
 # NOTE: The time complexity of each method called is O(n). So, the time complexity of the reverse_sentence method is O(n) * O(n), or O(n^2).
 def reverse_sentence(my_sentence)
@@ -74,7 +74,7 @@ def reverse_sentence(my_sentence)
   string_reverse(my_sentence)
   reverse_words(my_sentence)
   return my_sentence
-
+end # reverse_sentence
   # NOTE: BELOW IS ATTEMPT TO REVERSE THE SENTENCE IN PLACE. It doesn't work well because it repeates the sentence twice. Also Shruit says that using .slice! and my_sentence[(i + 1)..starting_index] add too much space complexity.
 
   # length = my_sentence.length
@@ -134,9 +134,9 @@ def reverse_sentence(my_sentence)
 #    end
 #   my_sentence.slice!(0..(length - 1))
 #   return my_sentence
-end # reverse_sentence
 
-# A method to check if the input string is a palindrome.
+
+# A METHOD TO CHECK IF THE INPUT STRING IS A PALENDROME
 # Return true if the string is a palindrome. Return false otherwise.
 # NOTE: The time complexity is O(n/2), or O(n). This is because the loop will run till i == j, which means the loop will run n/2 times.
 # NOTE: The space complexity is O(1) because as n increases the amount of memory used stays constant.
@@ -158,11 +158,9 @@ def palindrome_check(my_phrase)
   return true
 end
 
-# A method that updates the string by replacing consecutive repeating characters
-# with a number representing the frequency. The replacement is done only if the
-# string length will get reduced by the process.
+# A METHOD THAT UPDATES THE STRING BY REPLACING CONSECUTIVE REPEATING CHARACTERS WITH A NUMBER REPRESENTING THE FREQUENCY. THE REPLACEMENT IS DONE ONLY IF THE STRING WILL GET REDUCED BY THE PROCESS
 # NOTE: The time complexity of the encode_repeating method is O(n). There are internal loops that have a time complexity of O(some fraction of n), but since we drop constants the overall time complexity can be simplified to O(n).
-# NOTE: The space complexity of the encode_repeating method is O(1) because the same number of integer or one character string variables will be created no matter how large n gets.
+# NOTE: The space complexity of the encode_repeating method is O(n) because I use .slice! to create the removed variable, which will increase with the size of n if my_string has repeated characters 
 def encode_repeating(my_string)
   # TODO: make it work when there are multiple reapeated letter sections in a row (works for aaaaxbbbb but not aaabbb. Also doesn't work for aaahvbbbb). Why is this????
   i = 0
@@ -205,7 +203,8 @@ end # encode_repeating
 
 
 
-### ---- END OF METHODS
+### ---- END OF METHODS ####################################################
+
 puts "Test 1: reverse a string"
 my_string = "Lovelace"
 puts "Original string: #{my_string}"
