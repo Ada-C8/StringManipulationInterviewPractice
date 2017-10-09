@@ -13,21 +13,52 @@ def string_reverse(my_string)
 end
 
 # A method to reverse each word in a sentence, in place.
-def reverse_words(my_words)
-  array = my_words.split(" ")
-  new_array = ""
-  array.each do |word|
-    new_word = string_reverse(word)
-    new_array << word + " "
+def string_reverse_helper(my_string, front_index, back_index)
+  while front_index < back_index
+    back = my_string[back_index]
+    my_string[back_index] = my_string[front_index]
+    my_string[front_index] = back
+    front_index += 1
+    back_index -= 1
   end
-  my_words = new_array
-  puts new_array
-  # puts "NOT IMPLEMENTED"
+end
+
+def reverse_words(my_words)
+  index = 0
+  while my_words[index] != nil
+    if my_words[index] != " "
+      front_index = index
+      index += 1
+
+      while my_words[index] != " " && my_words[index] != nil
+        index += 1
+      end
+
+      back_index = index-1
+
+      string_reverse_helper(my_words, front_index, back_index)
+    else
+      index += 1
+    end
+    # puts "NOT IMPLEMENTED"
+  end
 end
 
 # A method to reverse the words in a sentence, in place.
 def reverse_sentence(my_sentence)
-  puts "NOT IMPLEMENTED"
+  reverse_words(my_sentence)
+
+  front_index = 0
+  back_index = my_sentence.length - 1
+
+  while front_index < back_index
+    back = my_sentence[back_index]
+    my_sentence[back_index] = my_sentence[front_index]
+    my_sentence[front_index] = back
+    front_index += 1
+    back_index -= 1
+  end
+  # puts "NOT IMPLEMENTED"
 end
 
 # A method to check if the input string is a palindrome.
