@@ -1,11 +1,28 @@
 # A method to reverse a string in place.
 def string_reverse(my_string)
-  puts "NOT IMPLEMENTED"
+  front_index = 0
+  back_index = my_string.length-1
+  while front_index < back_index
+    back = my_string[back_index]
+    my_string[back_index] = my_string[front_index]
+    my_string[front_index] = back
+    front_index += 1
+    back_index -= 1
+  end
+  # puts "NOT IMPLEMENTED"
 end
 
 # A method to reverse each word in a sentence, in place.
 def reverse_words(my_words)
-  puts "NOT IMPLEMENTED"
+  array = my_words.split(" ")
+  new_array = ""
+  array.each do |word|
+    new_word = string_reverse(word)
+    new_array << word + " "
+  end
+  my_words = new_array
+  puts new_array
+  # puts "NOT IMPLEMENTED"
 end
 
 # A method to reverse the words in a sentence, in place.
@@ -40,9 +57,9 @@ else
 end
 
 puts "Test 2: reversed words"
-my_words = "I can be an  engineer"
+my_words = "I can be  an engineer"
 puts "Original: #{my_words}"
-reversed_words = "I nac eb na  reenigne"
+reversed_words = "I nac eb  na reenigne"
 reverse_words(my_words)
 if my_words == reversed_words
   puts "Words reversed correctly. Reversed words: #{reversed_words}"
