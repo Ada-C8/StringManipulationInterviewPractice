@@ -1,5 +1,5 @@
 # A method to reverse a string in place.
-# NOTE: Space complexity is O(1) because the size of n does not affect teh amount of memory used: the same variables (i, j, and temp) are created for any value of n.
+# NOTE: Space complexity is O(1) because the size of n does not affect the amount of memory used: the same variables (i, j, and temp) are created for any value of n.
 #NOTE: The time complexity is O(1/2 n), or O(n). The while loop will run n/2 times (which is when i and i will be eqaul).
 def string_reverse(my_string)
   length = my_string.length
@@ -21,19 +21,20 @@ def string_reverse(my_string)
   return my_string
 end # string_reverse
 
+
+
+
 # A method to reverse each word in a sentence, in place.
 # need to only reverse words
 # Hint: Check if creating a helper method that reverses a subset of the string given starting index and ending index as parameters helps.
 
- # NOTE: The time complexity of the loops in the reverse_words method are: O(n), O(fraction of n), O(fraction of n), nad O(fraction of n). So, this methods time complexity is O(n).
+ # NOTE: The time complexity of the loops in the reverse_words method are: O(n), O(fraction of n), O(fraction of n), and O(fraction of n). So, this method's time complexity is O(n).
 # NOTE: the space complexity is O(1) because the same amount of memory is used no matter what the value of n is.
 def reverse_words(my_words)
   string_length = my_words.length
 
   first_index = 0
   last_index = 0
-  j = 0
-  k = 0
   i = 0
 
 #iterate through the whole string
@@ -42,19 +43,17 @@ def reverse_words(my_words)
     until my_words[i] =~ /^\s*$/ || i > string_length - 1
       # set last_index to i so you know where the word to reverse ends
       last_index = i
-      puts "last_index = #{last_index}"
       i += 1
     end # until
     # set the index of the start and end of the word to reverse within the sentence
-    j = first_index
-    k = last_index
+
     # reverse the word (only the word, no white space included)
-    while j < k
-      temp = my_words[j]
-      my_words[j] = my_words[k]
-      my_words[k] = temp
-      j += 1
-      k -= 1
+    while  first_index < last_index
+      temp = my_words[first_index]
+      my_words[first_index] = my_words[last_index]
+      my_words[last_index] = temp
+      first_index += 1
+      last_index -= 1
     end # inner while
     # move forward in string to end of string or end of white space after reversed word. i will now be equal to the start of the next word or the end of the string.
     while my_words[i] == ' ' && i < (string_length - 1)
