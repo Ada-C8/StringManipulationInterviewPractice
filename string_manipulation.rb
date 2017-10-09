@@ -1,23 +1,57 @@
+require "pry"
 # A method to reverse a string in place.
-def string_reverse(my_string)
-  puts "NOT IMPLEMENTED"
+
+def string_reverse(my_string, palindrome: false)
+  l = my_string.length
+  i = 0
+
+
+   until i >= l
+    temp = my_string[i]
+    my_string[i] = my_string[l - 1]
+    if palindrome == true
+      if temp != my_string[i]
+        return false
+      end
+    end
+    my_string[l - 1] = temp
+    i += 1
+    l -= 1
+  end
+  # return my_string
+  # ^return here is necessary for reverse_words. I know its not ideal.
 end
 
-# A method to reverse each word in a sentence, in place.
 def reverse_words(my_words)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  j = 0
+  k = 0
+  l = my_words.length
+
+  until i > l
+    if my_words[i] == " " || i==l
+      k = i
+      my_words[j...k] = string_reverse(my_words[j...k])
+      # ^ this is why I need the string_reverse to return itself - how do I get around this?
+      j = k + 1
+    end
+
+    i += 1
+  end
+  # return my_words
 end
 
 # A method to reverse the words in a sentence, in place.
 def reverse_sentence(my_sentence)
-  puts "NOT IMPLEMENTED"
+  string_reverse(my_sentence)
+  reverse_words(my_sentence)
+
 end
 
 # A method to check if the input string is a palindrome.
 # Return true if the string is a palindrome. Return false otherwise.
 def palindrome_check(my_phrase)
-  puts "NOT IMPLEMENTED"
-  return true
+  string_reverse(my_phrase, palindrome: true) != false
 end
 
 # A method that updates the string by replacing consecutive repeating characters
@@ -28,16 +62,16 @@ def encode_repeating(my_string)
 end
 
 ### ---- END OF METHODS
-puts "Test 1: reverse a string"
-my_string = "Lovelace"
-puts "Original string: #{my_string}"
-reversed_string = "ecalevoL"
-string_reverse(my_string)
-if my_string == reversed_string
-  puts "String reversed correctly. Reversed string: #{reversed_string}"
-else
-  puts "BUG! The reversed string should be '#{reversed_string}' and not '#{my_string}'"
-end
+# puts "Test 1: reverse a string"
+# my_string = "Lovelace"
+# puts "Original string: #{my_string}"
+# reversed_string = "ecalevoL"
+# string_reverse(my_string)
+# if my_string == reversed_string
+#   puts "String reversed correctly. Reversed string: #{reversed_string}"
+# else
+#   puts "BUG! The reversed string should be '#{reversed_string}' and not '#{my_string}'"
+# end
 
 puts "Test 2: reversed words"
 my_words = "I can be an  engineer"
