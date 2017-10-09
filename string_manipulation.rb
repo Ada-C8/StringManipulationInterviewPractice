@@ -1,36 +1,36 @@
 require "pry"
 # A method to reverse a string in place.
 def string_reverse(my_string, palindrome: false)
-  length = my_string.length
+  length = my_string.length #time O(n), space O(1)
 
-  (length/2).times do |i|
-    temp = my_string[i]
+  (length/2).times do |i| #time 1/2 O(n)
+    temp = my_string[i] #space O(1)
     my_string[i] = my_string[(length - 1) - i]
-    if palindrome == true
-      if temp != my_string[i]
+    if palindrome == true #time O(1)
+      if temp != my_string[i] #time O(1)
         return false
       end
     end
-    my_string[(length - 1) - i] = temp
+    my_string[(length - 1) - i] = temp #space O(1)
   end
   return my_string
 end
 
 # A method to reverse each word in a sentence, in place.
 def reverse_words(my_words)
-  spaces = [-1]
+  spaces = [-1] #space O(1)
 
-  my_words.length.times do |i|
-    if my_words[i] == " "
-      spaces << i
+  my_words.length.times do |i| #time O(n)
+    if my_words[i] == " " #time O(1)
+      spaces << i #at worst space 1/2 O(n)
     end
   end
-  spaces << my_words.length
+  spaces << my_words.length #space O(1)
 
-  (spaces.length - 1).times do |n|
-    word_start = spaces[n] + 1
-    word_end = spaces[n+1]
-    my_words[word_start...word_end] = string_reverse(my_words[word_start...word_end])
+  (spaces.length - 1).times do |n| #at worst time 1/2 O(n)
+    word_start = spaces[n] + 1 #space O(1)
+    word_end = spaces[n+1] #space O(1)
+    my_words[word_start...word_end] = string_reverse(my_words[word_start...word_end]) #time O(1) + O(n)
 
   end
 
