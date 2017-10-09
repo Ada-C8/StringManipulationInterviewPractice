@@ -1,42 +1,45 @@
 require "pry"
 # A method to reverse a string in place.
-def string_reverse(my_string, palindrome: false)
-  length = my_string.length #time O(n), space O(1)
 
-  (length/2).times do |i| #time 1/2 O(n)
-    temp = my_string[i] #space O(1)
-    my_string[i] = my_string[(length - 1) - i]
-    if palindrome == true #time O(1)
-      if temp != my_string[i] #time O(1)
+def string_reverse(my_string, palindrome: false)
+  l = my_string.length
+  i = 0
+
+
+   until i >= l
+    temp = my_string[i]
+    my_string[i] = my_string[l - 1]
+    if palindrome == true
+      if temp != my_string[i]
         return false
       end
     end
-    my_string[(length - 1) - i] = temp #space O(1)
+    my_string[l - 1] = temp
+    i += 1
+    l -= 1
   end
-  return my_string
+  # return my_string
+  # ^return here is necessary for reverse_words. I know its not ideal.
 end
 
-# A method to reverse each word in a sentence, in place.
 def reverse_words(my_words)
-  spaces = [-1] #space O(1)
+  i = 0
+  j = 0
+  k = 0
+  l = my_words.length
 
-  my_words.length.times do |i| #time O(n)
-    if my_words[i] == " " #time O(1)
-      spaces << i #at worst space 1/2 O(n)
+  until i > l
+    if my_words[i] == " " || i==l
+      k = i
+      my_words[j...k] = string_reverse(my_words[j...k])
+      # ^ this is why I need the string_reverse to return itself - how do I get around this?
+      j = k + 1
     end
+
+    i += 1
   end
-  spaces << my_words.length #space O(1)
-
-  (spaces.length - 1).times do |n| #at worst time 1/2 O(n)
-    word_start = spaces[n] + 1 #space O(1)
-    word_end = spaces[n+1] #space O(1)
-    my_words[word_start...word_end] = string_reverse(my_words[word_start...word_end]) #time O(1) + O(n)
-
-  end
-
-  return my_words
+  # return my_words
 end
-
 
 # A method to reverse the words in a sentence, in place.
 def reverse_sentence(my_sentence)
@@ -59,16 +62,16 @@ def encode_repeating(my_string)
 end
 
 ### ---- END OF METHODS
-puts "Test 1: reverse a string"
-my_string = "Lovelace"
-puts "Original string: #{my_string}"
-reversed_string = "ecalevoL"
-string_reverse(my_string)
-if my_string == reversed_string
-  puts "String reversed correctly. Reversed string: #{reversed_string}"
-else
-  puts "BUG! The reversed string should be '#{reversed_string}' and not '#{my_string}'"
-end
+# puts "Test 1: reverse a string"
+# my_string = "Lovelace"
+# puts "Original string: #{my_string}"
+# reversed_string = "ecalevoL"
+# string_reverse(my_string)
+# if my_string == reversed_string
+#   puts "String reversed correctly. Reversed string: #{reversed_string}"
+# else
+#   puts "BUG! The reversed string should be '#{reversed_string}' and not '#{my_string}'"
+# end
 
 puts "Test 2: reversed words"
 my_words = "I can be an  engineer"
