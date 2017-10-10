@@ -25,6 +25,8 @@ def scoped_reverse(my_string, start_index, last_index)
 end
 
 # A method to reverse each word in a sentence, in place.
+# Time Complexity = O(n); Iterates through entire length of string
+# Space Complexity = Constant; Only new variables are i to hold the index.
 def reverse_words(my_words)
   i = 0
   while my_words[i] != nil
@@ -43,37 +45,40 @@ def reverse_words(my_words)
 end
 
 # A method to reverse the words in a sentence, in place.
+# Time Complexity = O(n); Iterates through entire length of string.
+# Space Complexity = Constant; Only new variables are i and original_length
 def reverse_sentence(my_sentence)
   i = -1
-  length = (my_sentence.length + 1) * (-1)
-  reversed_sentence = ""
-  while i > length
+  original_length = my_sentence.length
+  while my_sentence[i] != nil
     if my_sentence[i] != ' ' #identifies a word in sentence
       end_index = i
       i -= 1
-      while my_sentence[i] != ' ' && i > length
+      while my_sentence[i] != ' ' && my_sentence[i] != nil
         i -= 1
       end
       start_index = i + 1
-      low = my_sentence[start_index..end_index]
     elsif my_sentence[i] == ' ' #identifies spacing within a sentence
       end_index = i
       i -= 1
-      while my_sentence[i] == ' ' && i > length
+      while my_sentence[i] == ' ' && my_sentence[i] != nil
         i -= 1
       end
       start_index = i + 1
-      low = my_sentence[start_index..end_index]
     end
-    reversed_sentence << low #shovels word or spacing into string
+    i -= (((-1) * start_index) - ((-1)* end_index) + 1) #moves the index to account for shoveling word into end of sentence
+    my_sentence << my_sentence[start_index..end_index]
   end
-  my_sentence[0..-1] = reversed_sentence[0..-1] #replaces input in place with reversed sentence (-:
+  my_sentence[0..-1] = my_sentence[(original_length * (-1))..-1] #replaces input in place with reversed sentence (-:
 end
 
 
 # A method to check if the input string is a palindrome.
 # Return true if the string is a palindrome. Return false otherwise.
+# Time Complexity = O(n); The input is reversed using the string reverse method, which depends on the size of the input.
+# Space Complexity = O(n); The reversed_phrase variable's size depends on the size of the input.
 def palindrome_check(my_phrase)
+  return false if my_phrase[0] != my_phrase[-1] # will not reverse phrase and return false if the first character of the string is not the same as the last character of the string.
   reversed_phrase = my_phrase[0..-1]
   string_reverse(reversed_phrase)
   if reversed_phrase == my_phrase
@@ -86,23 +91,26 @@ end
 # A method that updates the string by replacing consecutive repeating characters
 # with a number representing the frequncy. The replacement is done only if the
 # string length will get reduced by the process.
+# Time Complexity = O(n), iterates through the entire string.
+# Space Complexity = Constant, no new variables depend on the length or the input string.
 def encode_repeating(my_string)
   i = 0
+  original_length = my_string.length
   letter = ""
-  encode_string = ""
-  while my_string[i] != nil
+  while i != original_length + 1
     letter = my_string[i]
     letter_count = 1
-    encode_string << letter
+    my_string << letter
     i+= 1
-    while my_string[i] == letter
+    while my_string[i] == letter && i != original_length + 1
       letter_count += 1
       i += 1
     end
-      encode_string << letter_count.to_s if letter_count > 2 # I shoveled in the letter count using the to_s method, is there a better way of doing this? besides string interpolation?
-      encode_string << letter if letter_count == 2
+      my_string << letter_count.to_s if letter_count > 2 # I shoveled in the letter count using the to_s method, is there a better way of doing this? besides string interpolation?
+      my_string << letter if letter_count == 2
   end
-  my_string[0..-1] = encode_string[0..-1]
+  my_string[0..-1] = my_string[(original_length)...-1]
+
 end
 
 ### ---- END OF METHODS
