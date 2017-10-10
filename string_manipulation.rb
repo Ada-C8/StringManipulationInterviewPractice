@@ -1,23 +1,165 @@
 # A method to reverse a string in place.
 def string_reverse(my_string)
-  puts "NOT IMPLEMENTED"
+  # string_length = my_string.length
+  i = 0
+  j = my_string.length - 1
+
+  while i < j
+    temp = my_string[i]
+    my_string[i] = my_string[j]
+    my_string[j]= temp
+    i += 1
+    j -= 1
+  end
+  return
 end
+
+# THIS WAS MY FIRST ATTEMPT - DIDN'T USE BECAUSE SPACE COMPLEXITY IS LARGER THAN THE ABOVE VERSION
+# def string_reverse(my_string)
+#   string_length = my_string.length
+#
+#   (string_length/2).times do |i|
+#     temp = my_string[i]
+#     my_string[i] = my_string[string_length-(i+1)]
+#     my_string[string_length-(i+1)] = temp
+#   end
+#   my_string
+# end
+
 
 # A method to reverse each word in a sentence, in place.
 def reverse_words(my_words)
-  puts "NOT IMPLEMENTED"
+  index_array = []
+
+  my_words.length.times do |i|
+    if !my_words.slice(i).match(/\s/)
+      index_array << i
+      if (i+1) == my_words.length
+        my_words[index_array[0]..index_array[-1]] = string_reverse(my_words[index_array[0]..index_array[-1]])
+        index_array = []
+      elsif my_words.slice(i+1).match(/\s/)
+        my_words[index_array[0]..index_array[-1]] = string_reverse(my_words[index_array[0]..index_array[-1]])
+        index_array = []
+      end
+    end
+  end
+
 end
+
+## SHRUTI- QUESTION FOR YOU!- I've included below my first attempt at the above problem. It didn't work because it didn't reverse the words IN PLACE. Is there a way to set the resulting object to the object_id of the my_words variable and replace the my_words variable?
+# def reverse_words(my_words)
+#   id = my_words.object_id
+#   puts "ID: #{id}"
+#   word_length = my_words.length
+#   word_array = []
+#   chars = String.new
+#
+#   word_length.times do |i|
+#     puts "#{i} - #{my_words[i]} - next letter: #{my_words[i+1]}"
+#     if !my_words[i].match(/\s/)
+#       chars += my_words[i]
+#       puts "chars 1st loop = #{chars}"
+#       if (i+1) == word_length
+#         word_array << chars
+#         chars = ""
+#       elsif my_words[i+1].match(/\s/)
+#         word_array << chars
+#         chars = ""
+#       end
+#     elsif my_words[i].match(/\s/)
+#       chars += my_words[i]
+#       if !my_words[i+1].match(/\s/)
+#         word_array << chars
+#         chars = ""
+#       end
+#     end
+#     puts "Word_array = #{word_array}"
+#   end
+#
+#   word_array.each do |word|
+#     string_reverse(word)
+#   end
+#   puts "Word_array = #{word_array}"
+#   # my_words = word_array.join
+#   # puts "my_words = #{my_words}"
+#   id = my_words.object_id
+#   puts "ID: #{id}"
+#   return my_words
+# end
 
 # A method to reverse the words in a sentence, in place.
 def reverse_sentence(my_sentence)
-  puts "NOT IMPLEMENTED"
+  original_sentence = my_sentence.dup
+  index_array= []
+  word_array= []
+  temp_index = []
+
+  my_sentence.length.times do |i|
+    if !my_sentence.slice(i).match(/\s/)
+      temp_index << i
+
+      if (i+1) == my_sentence.length
+        left_word = my_sentence[temp_index[0]..temp_index[-1]]
+
+        word_array << left_word
+        index_array << temp_index[0]
+        temp_index = []
+      elsif my_sentence.slice(i+1).match(/\s/)
+
+        left_word = my_sentence[temp_index[0]..temp_index[-1]]
+
+        word_array << left_word
+        index_array << temp_index[0]
+        temp_index = []
+      end
+    elsif my_sentence.slice(i).match(/\s/)
+      temp_index << i
+
+      if !my_sentence.slice(i+1).match(/\s/)
+        left_word = my_sentence[temp_index[0]..temp_index[-1]]
+        index_array << temp_index[0]
+        word_array << left_word
+        temp_index = []
+      end
+    end
+  end
+
+  #REVERSE ARRAY
+  (word_array.length)/2.times do |i|
+    temp = word_array[i]
+    word_array[i] = word_array[-i-1]
+    word_array[-i-1] = temp
+  end
+
+  #PLUG IN ARRAY INTO STRING TO MODIFY IN PLACE
+  index = 0
+  word_array.length.times do |i|
+    my_sentence.insert(index, word_array[i])
+    index += word_array[i].length
+  end
+
+  #DELETES OUT ORIGINAL SENTENCE FROM THE END
+  my_sentence.chomp!(original_sentence)
+  my_sentence
 end
 
 # A method to check if the input string is a palindrome.
 # Return true if the string is a palindrome. Return false otherwise.
 def palindrome_check(my_phrase)
-  puts "NOT IMPLEMENTED"
-  return true
+  if my_phrase.include?(" ")
+    words = my_phrase.split(" ")
+    my_phrase = words.join
+  end
+
+  original_phrase = my_phrase.dup
+  phrase_length = my_phrase.length
+  (phrase_length/2).times do |i|
+    temp = my_phrase[i]
+    my_phrase[i] = my_phrase[(-i-1)]
+    my_phrase[(-i-1)] = temp
+  end
+
+  original_phrase == my_phrase
 end
 
 # A method that updates the string by replacing consecutive repeating characters
@@ -25,6 +167,7 @@ end
 # string length will get reduced by the process.
 def encode_repeating(my_string)
   puts "NOT IMPLEMENTED"
+  puts "Shruti- I'll keep working on this one!"
 end
 
 ### ---- END OF METHODS
@@ -67,8 +210,8 @@ puts "BUG: madam is a palindrome and should return true" if palindrome_check(phr
 phrase = "empty"
 puts "BUG: empty is not a palindrome and should return false" if palindrome_check(phrase) != false
 # optional challenge
-# phrase = "nurses run"
-# puts "BUG: 'nurses run' is a palindrome and should return true" if palindrome_check(phrase) != true
+phrase = "nurses run"
+puts "BUG: 'nurses run' is a palindrome and should return true" if palindrome_check(phrase) != true
 puts "Palindrome test complete."
 
 # Optional Question #5
