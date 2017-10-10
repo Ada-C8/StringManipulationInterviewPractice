@@ -1,14 +1,30 @@
 # A method to reverse a string in place.
 def string_reverse(my_string)
-  string_length = my_string.length
+  # string_length = my_string.length
+  i = 0
+  j = my_string.length - 1
 
-  ((string_length/2)).times do |i|
+  while i < j
     temp = my_string[i]
-    my_string[i] = my_string[string_length-(i+1)]
-    my_string[string_length-(i+1)] = temp
+    my_string[i] = my_string[j]
+    my_string[j]= temp
+    i += 1
+    j -= 1
   end
-  my_string
+  return
 end
+
+# THIS WAS MY FIRST ATTEMPT - DIDN'T USE BECAUSE SPACE COMPLEXITY IS LARGER THAN THE ABOVE VERSION
+# def string_reverse(my_string)
+#   string_length = my_string.length
+#
+#   (string_length/2).times do |i|
+#     temp = my_string[i]
+#     my_string[i] = my_string[string_length-(i+1)]
+#     my_string[string_length-(i+1)] = temp
+#   end
+#   my_string
+# end
 
 
 # A method to reverse each word in a sentence, in place.
@@ -18,24 +34,19 @@ def reverse_words(my_words)
   my_words.length.times do |i|
     if !my_words.slice(i).match(/\s/)
       index_array << i
-      # puts "Index_array = #{index_array}"
       if (i+1) == my_words.length
         my_words[index_array[0]..index_array[-1]] = string_reverse(my_words[index_array[0]..index_array[-1]])
-        # puts string_reverse(my_words[index_array[0]..index_array[-1]])
         index_array = []
       elsif my_words.slice(i+1).match(/\s/)
-        # puts "entered here"
         my_words[index_array[0]..index_array[-1]] = string_reverse(my_words[index_array[0]..index_array[-1]])
-        # puts string_reverse(my_words[index_array[0]..index_array[-1]])
         index_array = []
       end
-      # puts "my_words = #{my_words}"
     end
   end
-  # my_words
+
 end
 
-## SHRUTI- QUESTION FOR YOU!- I've included below my first attempt at the above problem. It didn't work because it didn't reverse the words IN PLACE. Is there a way to "point" the resulting object to the object_id of the my_words variable, instead?
+## SHRUTI- QUESTION FOR YOU!- I've included below my first attempt at the above problem. It didn't work because it didn't reverse the words IN PLACE. Is there a way to set the resulting object to the object_id of the my_words variable and replace the my_words variable?
 # def reverse_words(my_words)
 #   id = my_words.object_id
 #   puts "ID: #{id}"
@@ -156,6 +167,7 @@ end
 # string length will get reduced by the process.
 def encode_repeating(my_string)
   puts "NOT IMPLEMENTED"
+  puts "Shruti- I'll keep working on this one!"
 end
 
 ### ---- END OF METHODS
