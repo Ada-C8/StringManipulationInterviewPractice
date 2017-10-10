@@ -25,8 +25,8 @@ def string_reverse_helper(my_string, front_index, back_index)
   end
 end
 
-################
-##### O(n) #####
+############### O(n) ###############
+# only operates on each element once
 def reverse_words(my_words)
   index = 0
   while my_words[index] != nil
