@@ -1,22 +1,63 @@
 # A method to reverse a string in place.
 def string_reverse(my_string)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  j = my_string.length - 1
+  while i < j do
+    temp = my_string[i]
+    my_string[i] = my_string[j]
+    my_string[j] = temp
+    i += 1
+    j -=1
+  end
 end
 
 # A method to reverse each word in a sentence, in place.
 def reverse_words(my_words)
-  puts "NOT IMPLEMENTED"
+  index = 0
+  i = 0
+  while index < my_words.length
+    until my_words[index] == " " || (index == my_words.length)
+      index += 1
+    end
+    j = index - 1
+    while i < j do
+      temp = my_words[i]
+      my_words[i] = my_words[j]
+      my_words[j] = temp
+      i += 1
+      j -= 1
+    end
+    index = index + 1
+    i = index
+  end
 end
 
 # A method to reverse the words in a sentence, in place.
 def reverse_sentence(my_sentence)
-  puts "NOT IMPLEMENTED"
+  string_reverse(my_sentence)
+  reverse_words(my_sentence)
+  return my_sentence
 end
 
 # A method to check if the input string is a palindrome.
 # Return true if the string is a palindrome. Return false otherwise.
 def palindrome_check(my_phrase)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  j = my_phrase.length - 1
+
+  if my_phrase[i] != my_phrase[j]
+    return false
+  end
+
+  while i < j
+    if my_phrase[i] == " "
+      i += 1
+    elsif my_phrase[j] == " "
+      j -= 1
+    end
+    i += 1
+    j -= 1
+  end
   return true
 end
 
@@ -24,7 +65,6 @@ end
 # with a number representing the frequency. The replacement is done only if the
 # string length will get reduced by the process.
 def encode_repeating(my_string)
-  puts "NOT IMPLEMENTED"
 end
 
 ### ---- END OF METHODS
@@ -66,9 +106,9 @@ phrase = "madam"
 puts "BUG: madam is a palindrome and should return true" if palindrome_check(phrase) != true
 phrase = "empty"
 puts "BUG: empty is not a palindrome and should return false" if palindrome_check(phrase) != false
-# optional challenge
-# phrase = "nurses run"
-# puts "BUG: 'nurses run' is a palindrome and should return true" if palindrome_check(phrase) != true
+#optional challenge
+phrase = "nurses run"
+puts "BUG: 'nurses run' is a palindrome and should return true" if palindrome_check(phrase) != true
 puts "Palindrome test complete."
 
 # Optional Question #5
