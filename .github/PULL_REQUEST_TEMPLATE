@@ -6,13 +6,17 @@ What is the time and space complexity for each method you implemented? Provide j
 
 |  Question 	|  Answer 	|
 |---	|---	|
-|  What is the time complexity of the string_reverse method? Provide justification.	|   	|
-|  What is the space complexity of the string_reverse method? Provide justification.	|   	|
-|  What is the time complexity of the reverse_words method? Provide justification.	|   	|
-|  What is the space complexity of the reverse_words method? Provide justification.	|   	|
-|  What is the time complexity of the reverse_sentence method? Provide justification.	|   	|
-|  What is the space complexity of the reverse_sentence method? Provide justification.	|   	|
-|  What is the time complexity of the palindrome_check method? Provide justification.	|   	|
-|  What is the space complexity of the palindrome_check method? Provide justification.	|   	|
-|  What is the time complexity of the encode_repeating method? Provide justification.	|   	|
-|  What is the space complexity of the encode_repeating method? Provide justification.	|   	|
+|  What is the time complexity of the string_reverse method? Provide justification.	| The time complexity is O(1) + O(n/2) = O(n)  	|
+|  What is the space complexity of the string_reverse method? Provide justification.	|  Constant, only created variables that stored strings and integers.   	|
+|  What is the time complexity of the reverse_words method? Provide justification.	|   The time complexity is O(n) because the loop ends at the end of the input.  So the time will increase linearly as the input size increases. 	|
+|  What is the space complexity of the reverse_words method? Provide justification.	| It is constant.  We only created three variables that held integers.  So it only contained 6 bytes.     	|
+|  What is the time complexity of the reverse_sentence method? Provide justification.	|  O(n), while there are nested conditionals/while loops, the array is only ever iterated across once.   	|
+|  What is the space complexity of the reverse_sentence method? Provide justification.	|  It is constant.  I am actually very proud of this!  I originally had the reversed form sentence stored within a separate new variable.  However, I changed it so that the only variables created are one to hold the index number and another to hold the original length of the string. 	|
+|  What is the time complexity of the palindrome_check method? Provide justification.	|   Time Complexity = O(n); The input is reversed using the string reverse method, which depends on the size of the input.
+	|
+|  What is the space complexity of the palindrome_check method? Provide justification.	| Space Complexity = O(n); The reversed_phrase variable's size depends on the size of the input.
+  	|
+|  What is the time complexity of the encode_repeating method? Provide justification.	|  Time Complexity = O(n), iterates through the entire string.
+	|
+|  What is the space complexity of the encode_repeating method? Provide justification.	| Space Complexity = Constant, no new variables depend on the length or the input string.  
+	|
