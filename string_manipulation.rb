@@ -1,15 +1,17 @@
 # A method to reverse a string in place.
 def string_reverse(my_string)
-  front_index = 0
-  back_index = my_string.length-1
-  while front_index < back_index
-    back = my_string[back_index]
-    my_string[back_index] = my_string[front_index]
-    my_string[front_index] = back
-    front_index += 1
-    back_index -= 1
-  end
-  # puts "NOT IMPLEMENTED"
+  # front_index = 0
+  # back_index = my_string.length-1
+  # while front_index < back_index
+  #   back = my_string[back_index]
+  #   my_string[back_index] = my_string[front_index]
+  #   my_string[front_index] = back
+  #   front_index += 1
+  #   back_index -= 1
+  # end
+  # # puts "NOT IMPLEMENTED"
+
+  string_reverse_helper(my_string, 0, my_string.length-1)
 end
 
 # A method to reverse each word in a sentence, in place.
@@ -23,19 +25,18 @@ def string_reverse_helper(my_string, front_index, back_index)
   end
 end
 
+################
+##### O(n) #####
 def reverse_words(my_words)
   index = 0
   while my_words[index] != nil
     if my_words[index] != " "
       front_index = index
       index += 1
-
       while my_words[index] != " " && my_words[index] != nil
         index += 1
       end
-
       back_index = index-1
-
       string_reverse_helper(my_words, front_index, back_index)
     else
       index += 1
@@ -64,7 +65,16 @@ end
 # A method to check if the input string is a palindrome.
 # Return true if the string is a palindrome. Return false otherwise.
 def palindrome_check(my_phrase)
-  puts "NOT IMPLEMENTED"
+  front_index = 0
+  back_index = my_phrase.length-1
+  while front_index < back_index
+    if my_phrase[front_index] != my_phrase[back_index]
+      return false
+    end
+    front_index += 1
+    back_index -= 1
+  end
+  # puts "NOT IMPLEMENTED"
   return true
 end
 
