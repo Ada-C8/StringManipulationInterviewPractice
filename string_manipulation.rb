@@ -1,26 +1,79 @@
 # A method to reverse a string in place.
+require 'pry'
 def string_reverse(my_string)
-  puts "NOT IMPLEMENTED"
+
+  last_position = (my_string.length - 1)
+
+  first_position = 0
+
+  while last_position > first_position
+    first_letter = my_string[first_position]
+    last_letter = my_string[last_position]
+
+    my_string[first_position] = last_letter
+    my_string[last_position] = first_letter
+
+    last_position -= 1
+    first_position += 1
+  end
+
+  my_string
+
 end
 
 # A method to reverse each word in a sentence, in place.
 def reverse_words(my_words)
-  puts "NOT IMPLEMENTED"
+  first_position = 0
+  last_position = (my_words.length - 1)
+
+  word = ""
+  word_starting_index = 0
+  word_ending_index = 0
+  until first_position == last_position + 1
+    character = my_words[first_position]
+    if character == " "
+      my_words[word_starting_index .. word_ending_index] = string_reverse(word)
+      my_words[first_position] = character
+      word = ""
+      first_position += 1
+      word_starting_index = first_position
+    else
+      word += character
+      word_ending_index = first_position
+      first_position += 1
+    end
+  end
+  my_words[word_starting_index .. word_ending_index] = string_reverse(word)
 end
 
 # A method to reverse the words in a sentence, in place.
 def reverse_sentence(my_sentence)
-  puts "NOT IMPLEMENTED"
+  reverse_words(my_sentence)
+  string_reverse(my_sentence)
 end
 
-# A method to check if the input string is a palindrome.
-# Return true if the string is a palindrome. Return false otherwise.
+# A method to check if the input my_string is a palindrome.
+# Return true if the my_string is a palindrome. Return false otherwise.
 def palindrome_check(my_phrase)
-  puts "NOT IMPLEMENTED"
-  return true
+  string_fixed = my_phrase.split.join
+  first_position = 0
+  last_position = string_fixed.length - 1
+
+  while first_position != last_position
+
+    case
+    when string_fixed[first_position] != string_fixed[last_position]
+      return false
+      exit
+    when string_fixed[first_position] == string_fixed[last_position]
+      first_position += 1
+      last_position -= 1
+    end
+    return true
+  end
 end
 
-# A method that updates the string by replacing consecutive repeating characters
+# A method that updates the my_string by replacing consecutive repeating characters
 # with a number representing the frequency. The replacement is done only if the
 # string length will get reduced by the process.
 def encode_repeating(my_string)
