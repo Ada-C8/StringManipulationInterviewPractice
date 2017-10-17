@@ -1,23 +1,114 @@
 # A method to reverse a string in place.
+
 def string_reverse(my_string)
-  puts "NOT IMPLEMENTED"
+  length = my_string.length/2.floor
+  length.times do |i|
+    temp = my_string[i]
+    my_string[i] = my_string[(i+1) *-1]
+    my_string[(i+1)*-1] = temp
+  end
+
+  return my_string
 end
 
 # A method to reverse each word in a sentence, in place.
 def reverse_words(my_words)
-  puts "NOT IMPLEMENTED"
+  if my_words.length <= 1
+    return my_words
+  else
+    word_start = 0
+    word_end = 0
+    while word_end <= my_words.length
+      if my_words[word_end+1] == " " or my_words[word_end+1] == nil
+
+
+        holder = word_end
+
+        this_word = my_words[word_start..word_end]
+
+        word_length = this_word.length/2.floor
+
+        word_length.times do |index|
+           temp = my_words[word_start]
+           my_words[word_start] = my_words[word_end]
+           my_words[word_end] = temp
+           word_start += 1
+           word_end -= 1
+        end
+
+        word_start = holder+1
+
+        while my_words[word_start] == " "
+          word_start += 1
+
+        end
+
+        word_end = word_start +1
+
+      else
+        word_end += 1
+      end
+    end
+  end
+
+  return my_words
 end
+
 
 # A method to reverse the words in a sentence, in place.
 def reverse_sentence(my_sentence)
-  puts "NOT IMPLEMENTED"
+  words = my_sentence.split(" ")
+  first_word_length = words[0].length
+  current_index = my_sentence.length-1
+  holder_index = 0
+
+  while my_sentence[first_word_length*-1..-1] != words[0]
+    word_index_holder = 0
+    if my_sentence[current_index] == " "
+      whitespace_counter = 0
+      word_index_holder = current_index + 1
+
+      while my_sentence[current_index] == " "
+        current_index -= 1
+        whitespace_counter += 1
+      end
+
+      substring_reversed = my_sentence[word_index_holder..-1]
+
+      whitespace_counter.times do
+        substring_reversed += " "
+      end
+
+      front_part = my_sentence[holder_index..(my_sentence.length-substring_reversed.length-1)]
+
+      my_sentence = my_sentence[0...holder_index] + substring_reversed + front_part
+
+      current_index = -1
+      holder_index += substring_reversed.length
+    else
+      current_index -= 1
+    end
+  end
+  return my_sentence
 end
+
 
 # A method to check if the input string is a palindrome.
 # Return true if the string is a palindrome. Return false otherwise.
 def palindrome_check(my_phrase)
-  puts "NOT IMPLEMENTED"
-  return true
+  if my_phrase.length <= 1
+     return true
+   end
+
+   length = my_phrase.length/2
+
+   length.times do |index|
+     if my_phrase[index] != my_phrase[(index+1)*-1]
+       return false
+     end
+   end
+
+   return true
 end
 
 # A method that updates the string by replacing consecutive repeating characters
@@ -39,6 +130,7 @@ else
   puts "BUG! The reversed string should be '#{reversed_string}' and not '#{my_string}'"
 end
 
+
 puts "Test 2: reversed words"
 my_words = "I can be an  engineer"
 puts "Original: #{my_words}"
@@ -50,16 +142,19 @@ else
   puts "BUG! The reversed words should be '#{reversed_words}' and not '#{my_words}'"
 end
 
+
+
 puts "Test 3: reversed sentence"
 sentence = "Yoda  is   awesome"
 puts "Original: #{sentence}"
 reversed_sentence = "awesome   is  Yoda"
-reverse_sentence(sentence)
+sentence = reverse_sentence(sentence)
 if sentence == reversed_sentence
   puts "Sentence reversed correctly. Reversed sentence: '#{reversed_sentence}'"
 else
   puts "BUG! The reversed sentence should be '#{reversed_sentence}' and not '#{sentence}'"
 end
+
 
 puts "Test 4: Palindrome check"
 phrase = "madam"
