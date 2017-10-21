@@ -9,7 +9,7 @@ def string_reverse(my_string)
 
     my_string[i] = my_string[j]
     my_string[j] = temp
-
+ 
     i += 1
     j -= 1
   end
