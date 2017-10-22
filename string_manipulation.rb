@@ -1,20 +1,27 @@
 # A method to reverse a string in place.
 
 def string_reverse(my_string)
-  i = 0
-  j = my_string.length - 1
+  i = 0 # O(1) constant since variable is set to 0
+  j = my_string.length - 1 # 0(1) constant since j is set to the length of string - 1 (will always be the case regardless since it's fixed even if string is 1000 characters or 10, it will still be length -1)
 
-  while i < j
-    temp = my_string[i]
+  while i < j # while loop happens n amount of times depending on the length of my_string
+    temp = my_string[i] # O(1)
 
-    my_string[i] = my_string[j]
-    my_string[j] = temp
- 
-    i += 1
-    j -= 1
+    my_string[i] = my_string[j] # O(1)
+    my_string[j] = temp # O(1)
+
+    i += 1  # n times (operation: i + 1)
+    j -= 1  # n times (operation: j + 1)
   end
   return my_string
 end
+
+# Time complexity: n + n + n = 3n, constant can be eliminated as size of input grows
+# answer:  O(n)
+
+# Space complexity:  i and j are constant and memory is set aside for these variables.  Temp is variable that will be available after the function is run; my_string[i] and my_string[j] are just the indices in the array and memory has been allocated for my_string, which will typically be done for static array.
+
+#Hence even though, I want to say it's O(n), I think the space complexity is O(1)
 
 ##### QUESTIONS ########
 # Is it poor design to have two temporary variables?
@@ -52,16 +59,16 @@ end
 
 #######################################
 def reverse_words(my_words)
-  start = 0
-  last_index = my_words.length - 1
+  start = 0 # O(1)
+  last_index = my_words.length - 1 # O(1)
 
-  while start < last_index
-    i = start
-    until my_words[start] == " " || start > last_index
-      start += 1
+  while start < last_index # loop runs n times
+    i = start # O(1)
+    until my_words[start] == " " || start > last_index  # happens n times, not sure
+      start += 1 # operation will also happen n times depending on the length of the array
     end
-    j = start - 1
-    while i < j
+    j = start - 1 # runs n times
+    while i < j  # runs  n times
       temp = my_words[i]
 
       my_words[i] = my_words[j]
@@ -75,6 +82,9 @@ def reverse_words(my_words)
   return my_words
 end
 
+#Time complexity:  n * (n + n) = 2n^2 = O(n^2)  For every time we go through the outer loop, we go through two nested inner loop until we get to the end of the word before it can be reversed.  It is also affected by the size of the input i.e my_words.
+
+# Space complexity:  O(1), no new space is being created in memory
 
 #  I don't know why I couldn't get this to work
 # def reverse_words(my_words)
@@ -208,7 +218,10 @@ def reverse_sentence(my_sentence)
   return my_sentence
 end
 
+# Time complexity:  first while loop is O(n), which is reversing my_sentence (swapping) and the send while loop is O(n^2)
+# n + n2 = O(n^2).  It is O(n2) because there are 2 while loops on the same level; one while loop has two nested loops and the other while loop doesn't.  For each increase in put size, the speed of the algorithm will double.
 
+# Space complexity:  O(1), no new space is being allocated and since it is a static array, space would have been allocated before.
 #######################################################################
 # A method to check if the input string is a palindrome.
 # Return true if the string is a palindrome. Return false otherwise.
@@ -242,6 +255,9 @@ def palindrome_check(my_phrase)
   end
   return true
 end
+
+# Time complexity is O(n), the loop will run n times depending on the size of my_phrase
+# Space complexity is O(1), no new space in memory is being allocated.
 
 # A method that updates the string by replacing consecutive repeating characters
 # with a number representing the frequency. The replacement is done only if the
