@@ -30,7 +30,7 @@ end
 # - Each character in my_words gets scanned once to find the beginning and end of
 # a word. For this, the characters are compared to the white space, and character
 # count is tracked. This takes O(n) time.
-# - One the beginning and end for a word is deduced, partial_reverse is called.
+# - Once the beginning and end for a word is deduced, partial_reverse is called.
 # partial_reverse reverses each word and takes O(k) time if there are k characters
 # in the word. At the most n characters will get reversed. So, this takes O(n) time.
 # - Overall, each character gets visited twice, taking O(2n) time or O(n) time.
